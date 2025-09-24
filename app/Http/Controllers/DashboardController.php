@@ -22,8 +22,8 @@ class DashboardController extends Controller
             return view('managerdashboard');
         }
 
-        if ($user->hasRole('Employee')) {
-            return view('employeedashboard');
+        if ($user->hasRole(roles: 'Admin')) {
+            return view('dashboard');
         }
 
         // fallback
