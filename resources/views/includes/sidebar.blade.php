@@ -23,7 +23,7 @@
             >
               <!-- Dashobards -->
               <a
-                href="dashboards-crm-analytics.html"
+                href="{{ route('dashboard') }}"
                 class="flex items-center justify-center transition-colors duration-200 rounded-lg size-11 bg-primary/10 text-primary outline-hidden hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-navy-600 dark:text-accent-light dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
                 
                 x-tooltip.placement.right="'Dashboards'"
@@ -102,7 +102,7 @@
             <div class="flex flex-col items-center py-3 space-y-3">
               <!-- Settings -->
               <a
-              href="{{ route('profiledashboard') }}"
+                href="{{ route('common_profile.index') }}"
                 class="flex items-center justify-center transition-colors duration-200 rounded-lg size-11 outline-hidden hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
               >
                 <svg
@@ -136,7 +136,7 @@
                 >
                   <img
                     class="rounded-full"
-                    src="{{ asset('assets/images/avatar/avatar-12.jpg') }}""
+                    src="{{ asset('assets/images/avatar/avatar-12.jpg') }}"
                     alt="avatar"
                   />
                   <span
@@ -164,7 +164,7 @@
                       </div>
                       <div>
                         <a
-                          href="pages-starter-3.html#"
+                          href="#"
                           class="text-base font-medium text-slate-700 hover:text-primary focus:text-primary dark:text-navy-100 dark:hover:text-accent-light dark:focus:text-accent-light"
                         >
                           Travis Fuller
@@ -176,7 +176,7 @@
                     </div>
                     <div class="flex flex-col pt-2 pb-5">
                       <a
-                        href="pages-starter-3.html#"
+                        href="#"
                         class="flex items-center px-4 py-2 space-x-3 tracking-wide transition-all group outline-hidden hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                       >
                         <div
@@ -212,7 +212,7 @@
                         </div>
                       </a>
                       <a
-                        href="pages-starter-3.html#"
+                        href="#"
                         class="flex items-center px-4 py-2 space-x-3 tracking-wide transition-all group outline-hidden hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                       >
                         <div
@@ -248,7 +248,7 @@
                         </div>
                       </a>
                       <a
-                        href="pages-starter-3.html#"
+                        href="#"
                         class="flex items-center px-4 py-2 space-x-3 tracking-wide transition-all group outline-hidden hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                       >
                         <div
@@ -284,7 +284,7 @@
                         </div>
                       </a>
                       <a
-                        href="pages-starter-3.html#"
+                        href="#"
                         class="flex items-center px-4 py-2 space-x-3 tracking-wide transition-all group outline-hidden hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                       >
                         <div
@@ -320,7 +320,7 @@
                         </div>
                       </a>
                       <a
-                        href="pages-starter-3.html#"
+                        href="#"
                         class="flex items-center px-4 py-2 space-x-3 tracking-wide transition-all group outline-hidden hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
                       >
                         <div
@@ -869,7 +869,7 @@
                     <li>
                       <a
                         x-data="navLink"
-                        href="pages-starter-1.html"
+                        href="#"
                         :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-600 hover:text-slate-900 dark:text-navy-200 dark:hover:text-navy-50'"
                         class="flex items-center justify-between p-2 text-xs-plus tracking-wide outline-hidden transition-[color,padding-left] duration-300 ease-in-out hover:pl-4"
                       >

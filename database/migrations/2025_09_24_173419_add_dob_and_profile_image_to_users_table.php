@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->date('dob')->nullable()->after('email');
             $table->string('profile_image')->nullable()->after(column: 'dob');
-            $table->date('phone')->nullable()->after(column: 'profile_image');
+            $table->string('phone')->nullable()->after(column: 'profile_image');
         });
     }
 
