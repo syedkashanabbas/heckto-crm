@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
-    <title>Lineone - Sign In v1</title>
+    <title>Heckto Crm Login</title>
     <link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}" />
 
     <!-- CSS Assets -->
@@ -19,7 +19,7 @@
       <main class="grid w-full grid-cols-1 grow place-items-center">
         <div class="w-full max-w-[26rem] p-4 sm:px-5">
           <div class="text-center">
-            <img class="mx-auto size-16" src="{{ asset('assets/images/app-logo.svg') }}" alt="logo" />
+            <img class="mx-auto size-52" src="{{ asset('assets/images/heckto_icon.webp') }}" alt="logo" />
             <div class="mt-4">
               <h2 class="text-2xl font-semibold text-slate-600 dark:text-navy-100">Welcome Back</h2>
               <p class="text-slate-400 dark:text-navy-300">Please sign in to continue</p>

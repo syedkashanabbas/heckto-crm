@@ -6,7 +6,7 @@
             class="flex flex-col items-center justify-between w-full h-full bg-white border-r border-slate-150 dark:border-navy-700 dark:bg-navy-800"
           >
             <!-- Application Logo -->
-            <div class="flex pt-4">
+            {{-- <div class="flex pt-4">
               <a href="index.html">
                 <img
                   class="size-11 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
@@ -15,7 +15,7 @@
                   alt="logo"
                 />
               </a>
-            </div>
+            </div> --}}
 
             <!-- Main Sections Links -->
             <div
@@ -333,7 +333,7 @@
               <p
                 class="text-base tracking-wider text-slate-800 dark:text-navy-100"
               >
-                Layouts
+                Heckto Dashboard
               </p>
               <button
                 @click="$store.global.isSidebarExpanded = false"

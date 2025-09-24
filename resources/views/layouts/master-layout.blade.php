@@ -63,7 +63,7 @@
         @include('includes.mobile-searchbar')
 
       <!-- Right Sidebar -->
-         @include('includes.right-sidebar')
+         {{-- @include('includes.right-sidebar') --}}
 
       <!-- Main Content Wrapper -->
       <main class="main-content w-full px-[var(--margin-x)] pb-8">
