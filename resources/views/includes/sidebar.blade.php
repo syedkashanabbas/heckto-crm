@@ -136,7 +136,8 @@
                 >
                   <img
                     class="rounded-full"
-                    src="{{ asset('assets/images/avatar/avatar-12.jpg') }}"
+                    src="{{ $user->profile_image ? asset('storage/' . $user->profile_image) : asset('assets/images/avatar/avatar-12.jpg') }}"
+
                     alt="avatar"
                   />
                   <span
@@ -155,24 +156,25 @@
                     <div
                       class="flex items-center px-4 py-5 space-x-4 rounded-t-lg bg-slate-100 dark:bg-navy-800"
                     >
-                      <div class="avatar size-14">
+                     <div class="avatar size-14">
                         <img
                           class="rounded-full"
-                          src="{{ asset('assets/images/avatar/avatar-12.jpg') }}"
+                          src="{{ $user->profile_image ? asset('storage/' . $user->profile_image) : asset('assets/images/avatar/avatar-12.jpg') }}"
                           alt="avatar"
                         />
-                      </div>
-                      <div>
+                    </div>
+                    <div>
                         <a
                           href="#"
                           class="text-base font-medium text-slate-700 hover:text-primary focus:text-primary dark:text-navy-100 dark:hover:text-accent-light dark:focus:text-accent-light"
                         >
-                          Travis Fuller
+                          {{ $user->name }}
                         </a>
                         <p class="text-xs text-slate-400 dark:text-navy-300">
-                          Product Designer
+                          {{ $user->email }}
                         </p>
-                      </div>
+                    </div>
+
                     </div>
                     <div class="flex flex-col pt-2 pb-5">
                       <a
@@ -211,42 +213,7 @@
                           </div>
                         </div>
                       </a>
-                      <a
-                        href="#"
-                        class="flex items-center px-4 py-2 space-x-3 tracking-wide transition-all group outline-hidden hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
-                      >
-                        <div
-                          class="flex items-center justify-center text-white rounded-lg size-8 bg-info"
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="size-4.5"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            stroke-width="2"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                            />
-                          </svg>
-                        </div>
-
-                        <div>
-                          <h2
-                            class="font-medium transition-colors text-slate-700 group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light"
-                          >
-                            Messages
-                          </h2>
-                          <div
-                            class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
-                          >
-                            Your messages and tasks
-                          </div>
-                        </div>
-                      </a>
+                      
                       <a
                         href="#"
                         class="flex items-center px-4 py-2 space-x-3 tracking-wide transition-all group outline-hidden hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
@@ -319,47 +286,7 @@
                           </div>
                         </div>
                       </a>
-                      <a
-                        href="#"
-                        class="flex items-center px-4 py-2 space-x-3 tracking-wide transition-all group outline-hidden hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-navy-600 dark:focus:bg-navy-600"
-                      >
-                        <div
-                          class="flex items-center justify-center text-white rounded-lg size-8 bg-success"
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="size-4.5"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            stroke-width="2"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                            />
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                            />
-                          </svg>
-                        </div>
-
-                        <div>
-                          <h2
-                            class="font-medium transition-colors text-slate-700 group-hover:text-primary group-focus:text-primary dark:text-navy-100 dark:group-hover:text-accent-light dark:group-focus:text-accent-light"
-                          >
-                            Settings
-                          </h2>
-                          <div
-                            class="text-xs text-slate-400 line-clamp-1 dark:text-navy-300"
-                          >
-                            Webapp settings
-                          </div>
-                        </div>
-                      </a>
+                
                       <div class="px-4 mt-3">
                       <form method="POST" action="{{ route('logout') }}">
     @csrf
@@ -587,378 +514,6 @@
 
               <div class="h-px mx-4 my-3 bg-slate-200 dark:bg-navy-500"></div>
 
-              <ul class="flex flex-col flex-1 px-4 font-inter">
-                <li x-data="accordionItem('menu-item-7')">
-                  <a
-                    :class="expanded ? 'text-slate-800 font-semibold dark:text-navy-50' : 'text-slate-600 dark:text-navy-200  hover:text-slate-800  dark:hover:text-navy-50'"
-                    @click="expanded = !expanded"
-                    class="flex items-center justify-between py-2 text-xs-plus tracking-wide outline-hidden transition-[color,padding-left] duration-300 ease-in-out"
-                    href="javascript:void(0);"
-                  >
-                    <span>Sign In</span>
-                    <svg
-                      :class="expanded && 'rotate-90'"
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="transition-transform ease-in-out size-4 text-slate-400"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </a>
-                  <ul x-collapse x-show="expanded">
-                    <li>
-                      <a
-                        x-data="navLink"
-                        href="pages-login-1.html"
-                        :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-600 hover:text-slate-900 dark:text-navy-200 dark:hover:text-navy-50'"
-                        class="flex items-center justify-between p-2 text-xs-plus tracking-wide outline-hidden transition-[color,padding-left] duration-300 ease-in-out hover:pl-4"
-                      >
-                        <div class="flex items-center space-x-2">
-                          <div
-                            class="size-1.5 rounded-full border border-current opacity-40"
-                          ></div>
-                          <span>Sign In 1</span>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        x-data="navLink"
-                        href="pages-login-2.html"
-                        :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-600 hover:text-slate-900 dark:text-navy-200 dark:hover:text-navy-50'"
-                        class="flex items-center justify-between p-2 text-xs-plus tracking-wide outline-hidden transition-[color,padding-left] duration-300 ease-in-out hover:pl-4"
-                      >
-                        <div class="flex items-center space-x-2">
-                          <div
-                            class="size-1.5 rounded-full border border-current opacity-40"
-                          ></div>
-                          <span>Sign In 2</span>
-                        </div>
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-
-                <li x-data="accordionItem('menu-item-8')">
-                  <a
-                    :class="expanded ? 'text-slate-800 font-semibold dark:text-navy-50' : 'text-slate-600 dark:text-navy-200  hover:text-slate-800  dark:hover:text-navy-50'"
-                    @click="expanded = !expanded"
-                    class="flex items-center justify-between py-2 text-xs-plus tracking-wide outline-hidden transition-[color,padding-left] duration-300 ease-in-out"
-                    href="javascript:void(0);"
-                  >
-                    <span>Sign Up</span>
-                    <svg
-                      :class="expanded && 'rotate-90'"
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="transition-transform ease-in-out size-4 text-slate-400"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </a>
-                  <ul x-collapse x-show="expanded">
-                    <li>
-                      <a
-                        x-data="navLink"
-                        href="pages-singup-1.html"
-                        :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-600 hover:text-slate-900 dark:text-navy-200 dark:hover:text-navy-50'"
-                        class="flex items-center justify-between p-2 text-xs-plus tracking-wide outline-hidden transition-[color,padding-left] duration-300 ease-in-out hover:pl-4"
-                      >
-                        <div class="flex items-center space-x-2">
-                          <div
-                            class="size-1.5 rounded-full border border-current opacity-40"
-                          ></div>
-                          <span>Sign Up 1</span>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        x-data="navLink"
-                        href="pages-singup-2.html"
-                        :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-600 hover:text-slate-900 dark:text-navy-200 dark:hover:text-navy-50'"
-                        class="flex items-center justify-between p-2 text-xs-plus tracking-wide outline-hidden transition-[color,padding-left] duration-300 ease-in-out hover:pl-4"
-                      >
-                        <div class="flex items-center space-x-2">
-                          <div
-                            class="size-1.5 rounded-full border border-current opacity-40"
-                          ></div>
-                          <span>Sign Up 2</span>
-                        </div>
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-
-              <div class="h-px mx-4 my-3 bg-slate-200 dark:bg-navy-500"></div>
-
-              <ul class="flex flex-col flex-1 px-4 font-inter">
-                <li x-data="accordionItem('menu-item-9')">
-                  <a
-                    :class="expanded ? 'text-slate-800 font-semibold dark:text-navy-50' : 'text-slate-600 dark:text-navy-200  hover:text-slate-800  dark:hover:text-navy-50'"
-                    @click="expanded = !expanded"
-                    class="flex items-center justify-between py-2 text-xs-plus tracking-wide outline-hidden transition-[color,padding-left] duration-300 ease-in-out"
-                    href="javascript:void(0);"
-                  >
-                    <span>Error</span>
-                    <svg
-                      :class="expanded && 'rotate-90'"
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="transition-transform ease-in-out size-4 text-slate-400"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </a>
-                  <ul x-collapse x-show="expanded">
-                    <li>
-                      <a
-                        x-data="navLink"
-                        href="pages-error-404-1.html"
-                        :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-600 hover:text-slate-900 dark:text-navy-200 dark:hover:text-navy-50'"
-                        class="flex items-center justify-between p-2 text-xs-plus tracking-wide outline-hidden transition-[color,padding-left] duration-300 ease-in-out hover:pl-4"
-                      >
-                        <div class="flex items-center space-x-2">
-                          <div
-                            class="size-1.5 rounded-full border border-current opacity-40"
-                          ></div>
-                          <span>Error 404 v1</span>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        x-data="navLink"
-                        href="pages-error-404-2.html"
-                        :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-600 hover:text-slate-900 dark:text-navy-200 dark:hover:text-navy-50'"
-                        class="flex items-center justify-between p-2 text-xs-plus tracking-wide outline-hidden transition-[color,padding-left] duration-300 ease-in-out hover:pl-4"
-                      >
-                        <div class="flex items-center space-x-2">
-                          <div
-                            class="size-1.5 rounded-full border border-current opacity-40"
-                          ></div>
-                          <span>Error 404 v2</span>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        x-data="navLink"
-                        href="pages-error-404-3.html"
-                        :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-600 hover:text-slate-900 dark:text-navy-200 dark:hover:text-navy-50'"
-                        class="flex items-center justify-between p-2 text-xs-plus tracking-wide outline-hidden transition-[color,padding-left] duration-300 ease-in-out hover:pl-4"
-                      >
-                        <div class="flex items-center space-x-2">
-                          <div
-                            class="size-1.5 rounded-full border border-current opacity-40"
-                          ></div>
-                          <span>Error 404 v3</span>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        x-data="navLink"
-                        href="pages-error-404-4.html"
-                        :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-600 hover:text-slate-900 dark:text-navy-200 dark:hover:text-navy-50'"
-                        class="flex items-center justify-between p-2 text-xs-plus tracking-wide outline-hidden transition-[color,padding-left] duration-300 ease-in-out hover:pl-4"
-                      >
-                        <div class="flex items-center space-x-2">
-                          <div
-                            class="size-1.5 rounded-full border border-current opacity-40"
-                          ></div>
-                          <span>Error 404 v4</span>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        x-data="navLink"
-                        href="pages-error-401.html"
-                        :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-600 hover:text-slate-900 dark:text-navy-200 dark:hover:text-navy-50'"
-                        class="flex items-center justify-between p-2 text-xs-plus tracking-wide outline-hidden transition-[color,padding-left] duration-300 ease-in-out hover:pl-4"
-                      >
-                        <div class="flex items-center space-x-2">
-                          <div
-                            class="size-1.5 rounded-full border border-current opacity-40"
-                          ></div>
-                          <span>Error 401</span>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        x-data="navLink"
-                        href="pages-error-429.html"
-                        :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-600 hover:text-slate-900 dark:text-navy-200 dark:hover:text-navy-50'"
-                        class="flex items-center justify-between p-2 text-xs-plus tracking-wide outline-hidden transition-[color,padding-left] duration-300 ease-in-out hover:pl-4"
-                      >
-                        <div class="flex items-center space-x-2">
-                          <div
-                            class="size-1.5 rounded-full border border-current opacity-40"
-                          ></div>
-                          <span>Error 429</span>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        x-data="navLink"
-                        href="pages-error-500.html"
-                        :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-600 hover:text-slate-900 dark:text-navy-200 dark:hover:text-navy-50'"
-                        class="flex items-center justify-between p-2 text-xs-plus tracking-wide outline-hidden transition-[color,padding-left] duration-300 ease-in-out hover:pl-4"
-                      >
-                        <div class="flex items-center space-x-2">
-                          <div
-                            class="size-1.5 rounded-full border border-current opacity-40"
-                          ></div>
-                          <span>Error 500</span>
-                        </div>
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-
-                <li x-data="accordionItem('menu-item-10')">
-                  <a
-                    :class="expanded ? 'text-slate-800 font-semibold dark:text-navy-50' : 'text-slate-600 dark:text-navy-200  hover:text-slate-800  dark:hover:text-navy-50'"
-                    @click="expanded = !expanded"
-                    class="flex items-center justify-between py-2 text-xs-plus tracking-wide outline-hidden transition-[color,padding-left] duration-300 ease-in-out"
-                    href="javascript:void(0);"
-                  >
-                    <span>Starter</span>
-                    <svg
-                      :class="expanded && 'rotate-90'"
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="transition-transform ease-in-out size-4 text-slate-400"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </a>
-                  <ul x-collapse x-show="expanded">
-                    <li>
-                      <a
-                        x-data="navLink"
-                        href="#"
-                        :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-600 hover:text-slate-900 dark:text-navy-200 dark:hover:text-navy-50'"
-                        class="flex items-center justify-between p-2 text-xs-plus tracking-wide outline-hidden transition-[color,padding-left] duration-300 ease-in-out hover:pl-4"
-                      >
-                        <div class="flex items-center space-x-2">
-                          <div
-                            class="size-1.5 rounded-full border border-current opacity-40"
-                          ></div>
-                          <span>Blurred Header</span>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        x-data="navLink"
-                        href="pages-starter-2.html"
-                        :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-600 hover:text-slate-900 dark:text-navy-200 dark:hover:text-navy-50'"
-                        class="flex items-center justify-between p-2 text-xs-plus tracking-wide outline-hidden transition-[color,padding-left] duration-300 ease-in-out hover:pl-4"
-                      >
-                        <div class="flex items-center space-x-2">
-                          <div
-                            class="size-1.5 rounded-full border border-current opacity-40"
-                          ></div>
-                          <span>Unblurred Header</span>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        x-data="navLink"
-                        href="pages-starter-3.html"
-                        :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-600 hover:text-slate-900 dark:text-navy-200 dark:hover:text-navy-50'"
-                        class="flex items-center justify-between p-2 text-xs-plus tracking-wide outline-hidden transition-[color,padding-left] duration-300 ease-in-out hover:pl-4"
-                      >
-                        <div class="flex items-center space-x-2">
-                          <div
-                            class="size-1.5 rounded-full border border-current opacity-40"
-                          ></div>
-                          <span>Centered Links</span>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        x-data="navLink"
-                        href="pages-starter-4.html"
-                        :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-600 hover:text-slate-900 dark:text-navy-200 dark:hover:text-navy-50'"
-                        class="flex items-center justify-between p-2 text-xs-plus tracking-wide outline-hidden transition-[color,padding-left] duration-300 ease-in-out hover:pl-4"
-                      >
-                        <div class="flex items-center space-x-2">
-                          <div
-                            class="size-1.5 rounded-full border border-current opacity-40"
-                          ></div>
-                          <span>Minimal Sidebar</span>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        x-data="navLink"
-                        href="pages-starter-5.html"
-                        :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-600 hover:text-slate-900 dark:text-navy-200 dark:hover:text-navy-50'"
-                        class="flex items-center justify-between p-2 text-xs-plus tracking-wide outline-hidden transition-[color,padding-left] duration-300 ease-in-out hover:pl-4"
-                      >
-                        <div class="flex items-center space-x-2">
-                          <div
-                            class="size-1.5 rounded-full border border-current opacity-40"
-                          ></div>
-                          <span>Horizontal Navigation</span>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        x-data="navLink"
-                        href="pages-starter-6.html"
-                        :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-600 hover:text-slate-900 dark:text-navy-200 dark:hover:text-navy-50'"
-                        class="flex items-center justify-between p-2 text-xs-plus tracking-wide outline-hidden transition-[color,padding-left] duration-300 ease-in-out hover:pl-4"
-                      >
-                        <div class="flex items-center space-x-2">
-                          <div
-                            class="size-1.5 rounded-full border border-current opacity-40"
-                          ></div>
-                          <span>Sideblock</span>
-                        </div>
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
             </div>
           </div>
         </div>
