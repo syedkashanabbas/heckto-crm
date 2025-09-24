@@ -67,9 +67,8 @@
 
       <!-- Main Content Wrapper -->
       <main class="main-content w-full px-[var(--margin-x)] pb-8">
-        <div class="flex items-center py-5 space-x-4 lg:py-6">
-            @yield('content')
-        </div>
+        @yield('content')
+        
       </main>
     </div>
 

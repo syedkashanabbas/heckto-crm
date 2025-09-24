@@ -28,6 +28,19 @@ class UsersSeeder extends Seeder
             'zain@heckto.com',
         ];
 
+        /*
+        ashir@heckto.com
+        kashan@heckto.com
+        rayaan@heckto.com
+        sajid@heckto.com
+        Managers:
+        ahad@heckto.com
+        rehman@heckto.com
+        zain@heckto.com
+        Admin:
+        daniyal@heckto.com
+
+        */
         // Admin
         $admins = [
             'daniyal@heckto.com',
