@@ -67,14 +67,17 @@
          {{-- @include('includes.right-sidebar') --}}
 
       <!-- Main Content Wrapper -->
-      {{-- <main class="main-content w-full px-[var(--margin-x)] pb-8">
+    @if(isset($layoutType) && $layoutType === 'kanban')
+    <main class="main-content kanban-app w-full">
         @yield('content')
-        
-      </main> --}}
-<main class="main-content kanban-app w-full">
-        @yield('content')
-        
-      </main>
+    </main>
+    @else
+        <main class="main-content w-full px-[var(--margin-x)] pb-8">
+            @yield('content')
+        </main>2
+    @endif
+      <!-- Main Content Wrapper --> 
+
       
     </div>
 

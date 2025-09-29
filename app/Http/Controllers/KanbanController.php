@@ -8,6 +8,9 @@ class KanbanController extends Controller
 {
     public function index()
     {
-        return view('kanban.index');
+            return view('kanban.index', [
+            'layoutType' => 'kanban' 
+    ]);
+
     }
 }
