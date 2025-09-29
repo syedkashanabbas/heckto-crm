@@ -67,10 +67,15 @@
          {{-- @include('includes.right-sidebar') --}}
 
       <!-- Main Content Wrapper -->
-      <main class="main-content w-full px-[var(--margin-x)] pb-8">
+      {{-- <main class="main-content w-full px-[var(--margin-x)] pb-8">
+        @yield('content')
+        
+      </main> --}}
+<main class="main-content kanban-app w-full">
         @yield('content')
         
       </main>
+      
     </div>
 
     <div id="x-teleport-target"></div>
