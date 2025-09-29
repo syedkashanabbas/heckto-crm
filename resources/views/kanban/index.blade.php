@@ -12,26 +12,9 @@
             <h3
               class="text-lg font-medium text-slate-700 line-clamp-1 dark:text-navy-50"
             >
-              Banking App
+              Heckto Board
             </h3>
-            <button
-              class="btn hidden size-8 rounded-full p-0 font-medium text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25 sm:inline-flex"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="size-4.5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                />
-              </svg>
-            </button>
+         
           </div>
           <label class="relative hidden w-full max-w-[16rem] sm:flex">
             <input
