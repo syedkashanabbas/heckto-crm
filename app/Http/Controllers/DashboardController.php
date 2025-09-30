@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Attendances;
+
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -12,9 +12,8 @@ class DashboardController extends Controller
         $user = Auth::user();
 
       if ($user->hasRole('Employee')) {
-        $today = Attendances::where('user_id',$user->id)
-                ->whereDate('created_at',today())->first();
-        return view('employeedashboard', compact('user','today'));
+       
+        return view('employeedashboard', compact('user'));
     }
 
 

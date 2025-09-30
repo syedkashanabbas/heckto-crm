@@ -365,7 +365,7 @@
               <ul class="flex flex-col flex-1 px-4 font-inter">
 
 
-                <li x-data="accordionItem('menu-item-5')">
+                {{-- <li x-data="accordionItem('menu-item-5')">
                   <a
                     :class="expanded ? 'text-slate-800 font-semibold dark:text-navy-50' : 'text-slate-600 dark:text-navy-200  hover:text-slate-800  dark:hover:text-navy-50'"
                     @click="expanded = !expanded"
@@ -451,7 +451,8 @@
                       </a>
                     </li>
                   </ul>
-                </li>
+                </li> --}}
+
 
                 <li x-data="accordionItem('menu-item-6')">
                   <a
@@ -460,7 +461,7 @@
                     class="flex items-center justify-between py-2 text-xs-plus tracking-wide outline-hidden transition-[color,padding-left] duration-300 ease-in-out"
                     href="javascript:void(0);"
                   >
-                    <span>Invoice</span>
+                    <span>Attendance</span>
                     <svg
                       :class="expanded && 'rotate-90'"
                       xmlns="http://www.w3.org/2000/svg"
@@ -481,7 +482,7 @@
                     <li>
                       <a
                         x-data="navLink"
-                        href="pages-invoice-1.html"
+                        href=""
                         :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-600 hover:text-slate-900 dark:text-navy-200 dark:hover:text-navy-50'"
                         class="flex items-center justify-between p-2 text-xs-plus tracking-wide outline-hidden transition-[color,padding-left] duration-300 ease-in-out hover:pl-4"
                       >
@@ -489,14 +490,14 @@
                           <div
                             class="size-1.5 rounded-full border border-current opacity-40"
                           ></div>
-                          <span>Invoice 1</span>
+                          <span>Leave Application</span>
                         </div>
                       </a>
                     </li>
                     <li>
                       <a
                         x-data="navLink"
-                        href="pages-invoice-2.html"
+                        href=""
                         :class="isActive ? 'font-medium text-primary dark:text-accent-light' : 'text-slate-600 hover:text-slate-900 dark:text-navy-200 dark:hover:text-navy-50'"
                         class="flex items-center justify-between p-2 text-xs-plus tracking-wide outline-hidden transition-[color,padding-left] duration-300 ease-in-out hover:pl-4"
                       >
@@ -504,7 +505,7 @@
                           <div
                             class="size-1.5 rounded-full border border-current opacity-40"
                           ></div>
-                          <span>Invoice 2</span>
+                          <span>Daily Attendance</span>
                         </div>
                       </a>
                     </li>
