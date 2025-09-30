@@ -47,18 +47,38 @@
   </div>
 
   {{-- Daily Summary --}}
-  <div class="bg-white dark:bg-navy-800 p-6 rounded-2xl mt-6 shadow-lg">
-    <h3 class="text-lg font-semibold text-slate-800 dark:text-white mb-4">Daily Summary</h3>
-    <input type="text" placeholder="Title"
-      class="form-input w-full bg-transparent p-3 mb-4 text-lg font-medium placeholder:text-slate-400/70" />
-    <textarea rows="5" placeholder="Write your daily summary..."
-      class="form-textarea w-full resize-none bg-transparent p-3 placeholder:text-slate-400/70"></textarea>
-    <div class="flex justify-end mt-4">
-      <button class="btn rounded-md bg-primary px-4 text-xs-plus font-medium text-white hover:bg-primary-focus">
-        Save Daily Summary
-      </button>
-    </div>
+<div class="bg-white dark:bg-navy-800 p-6 rounded-2xl mt-6 shadow-lg">
+  <h3 class="text-lg font-semibold text-slate-800 dark:text-white mb-4">Daily Summary</h3>
+
+  <!-- Date Picker -->
+  <label class="relative flex mb-3">
+    <input id="summaryDate"
+      x-init="$el._x_flatpickr = flatpickr($el, { dateFormat: 'Y-m-d' })"
+      class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9"
+      placeholder="Choose date..."
+      type="text"
+    />
+    <span class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400">
+      📅
+    </span>
+  </label>
+
+  <input type="text" id="summaryTitle"
+    class="form-input w-full bg-transparent p-3 mb-4 text-lg font-medium placeholder:text-slate-400/70"
+    placeholder="Title" />
+
+  <textarea id="summaryText" rows="5"
+    class="form-textarea w-full resize-none bg-transparent p-3 placeholder:text-slate-400/70"
+    placeholder="Write your daily summary..."></textarea>
+
+  <div class="flex justify-end mt-4">
+    <button id="saveSummaryBtn"
+      class="btn rounded-md bg-primary px-4 text-xs-plus font-medium text-white hover:bg-primary-focus">
+      Save Daily Summary
+    </button>
   </div>
+</div>
+
 </div>
 
 

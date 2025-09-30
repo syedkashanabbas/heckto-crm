@@ -86,6 +86,7 @@
     <div id="x-teleport-target"></div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script script src="{{ asset('assets/js/clock.js') }}"></script>
+    <script script src="{{ asset('assets/js/daily-summary.js') }}"></script>
 
     <script>
       window.addEventListener("DOMContentLoaded", () => Alpine.start());

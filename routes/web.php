@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CommonProfileController;
 use App\Http\Controllers\KanbanController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\DailySummaryController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -24,8 +25,9 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
     Route::post('/attendance/afk', [AttendanceController::class, 'afk'])->name('attendance.afk');
     Route::post('/attendance/clock-out', [AttendanceController::class, 'clockOut'])->name('attendance.clockOut');
     Route::get('/attendance/status', [AttendanceController::class, 'currentStatus'])->name('attendance.status');
-    Route::get('/attendance/total-hours', [\App\Http\Controllers\AttendanceController::class, 'getTotalWorkedHours'])->name('attendance.total.hours');
-
+    Route::get('/attendance/total-hours', [AttendanceController::class, 'getTotalWorkedHours'])->name('attendance.total.hours');
+    Route::get('/daily-summary', [DailySummaryController::class, 'index']);
+    Route::post('/daily-summary', [DailySummaryController::class, 'storeOrUpdate']);
 
 
     });
