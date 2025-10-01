@@ -9,6 +9,13 @@ class Attendance extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+    'clock_in_time' => 'datetime',
+    'clock_out_time' => 'datetime',
+    'afk_start_time' => 'datetime',
+    'afk_end_time' => 'datetime',
+];
+
     protected $fillable = [
         'user_id',
         'status',

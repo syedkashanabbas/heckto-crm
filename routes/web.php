@@ -8,6 +8,7 @@ use App\Http\Controllers\KanbanController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\DailySummaryController;
 use App\Http\Controllers\AdminAttendanceController;
+use App\Http\Controllers\AttendanceTrackingController;
 
 Route::get('/', function () {
     return redirect('/login');
@@ -32,6 +33,8 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
     Route::post('/daily-summary', [DailySummaryController::class, 'storeOrUpdate']);
      Route::get('/admin/attendance', [AdminAttendanceController::class, 'index'])->name('admin.attendance');
     Route::get('/admin/attendance/data', action: [AdminAttendanceController::class, 'getData']);
+    Route::get('/tracking-attendance', [AttendanceTrackingController::class, 'index'])->name('tracking.index');
+    Route::post('/tracking-attendance/fetch', [AttendanceTrackingController::class, 'fetch'])->name('tracking.fetch');
 
 
     });
