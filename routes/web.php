@@ -7,10 +7,12 @@ use App\Http\Controllers\CommonProfileController;
 use App\Http\Controllers\KanbanController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\DailySummaryController;
+use App\Http\Controllers\AdminAttendanceController;
 
 Route::get('/', function () {
-    return redirect()->route('login');
+    return redirect('/login');
 });
+
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
@@ -28,8 +30,12 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
     Route::get('/attendance/total-hours', [AttendanceController::class, 'getTotalWorkedHours'])->name('attendance.total.hours');
     Route::get('/daily-summary', [DailySummaryController::class, 'index']);
     Route::post('/daily-summary', [DailySummaryController::class, 'storeOrUpdate']);
+     Route::get('/admin/attendance', [AdminAttendanceController::class, 'index'])->name('admin.attendance');
+    Route::get('/admin/attendance/data', action: [AdminAttendanceController::class, 'getData']);
 
 
     });
+
+  
 
 require __DIR__.'/auth.php';

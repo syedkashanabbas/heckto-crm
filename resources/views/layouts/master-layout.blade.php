@@ -70,7 +70,7 @@
 
       <!-- Main Content Wrapper -->
     @if(isset($layoutType) && $layoutType === 'kanban')
-    <main class="main-content kanban-app w-full">
+    <main class="w-full main-content kanban-app">
         @yield('content')
     </main>
     @else
@@ -87,7 +87,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script script src="{{ asset('assets/js/clock.js') }}"></script>
     <script script src="{{ asset('assets/js/daily-summary.js') }}"></script>
-
+  <script src="{{ asset('assets/js/adminAttendance.js') }}"></script>
     <script>
       window.addEventListener("DOMContentLoaded", () => Alpine.start());
     </script>
