@@ -18,7 +18,7 @@ class AttendanceTrackingController extends Controller
 public function fetch(Request $request)
 {
     // Parse the requested date in New York timezone
-    $date = Carbon::parse($request->date, 'America/Los_Angeles');
+    $date = Carbon::parse($request->date, timezone: 'America/Los_Angeles');
 
     // Define full-day range for that date
     $start = $date->copy()->startOfDay();
