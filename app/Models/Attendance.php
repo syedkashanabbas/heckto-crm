@@ -29,6 +29,7 @@ class Attendance extends Model
         'afk_end_time',
         'total_afk_minutes',
         'total_work_minutes',
+        'remarks',
     ];
 
     // Relation with User
