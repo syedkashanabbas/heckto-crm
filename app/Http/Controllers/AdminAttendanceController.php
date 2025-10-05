@@ -18,7 +18,7 @@ class AdminAttendanceController extends Controller
 public function getData(Request $request)
 {
     // New York timezone
-    $now = Carbon::now('America/Los_Angeles');
+    $now = Carbon::now('America/New_York');
 
     // Define current day start and end (NYC timezone)
     $shiftStart = $now->copy()->startOfDay();
@@ -35,10 +35,10 @@ public function getData(Request $request)
         return [
             'user' => $rec->user->name,
             'clock_in' => $rec->clock_in_time
-                ? Carbon::parse($rec->clock_in_time)->timezone('America/Los_Angeles')->format('d M Y h:i A')
+                ? Carbon::parse($rec->clock_in_time)->timezone('America/New_York')->format('d M Y h:i A')
                 : '-',
             'clock_out' => $rec->clock_out_time
-                ? Carbon::parse($rec->clock_out_time)->timezone('America/Los_Angeles')->format('d M Y h:i A')
+                ? Carbon::parse($rec->clock_out_time)->timezone('America/New_York')->format('d M Y h:i A')
                 : '-',
             'status' => $rec->status,
             'worked' => gmdate("H:i", $rec->total_work_minutes * 60),

@@ -37,9 +37,9 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
     Route::get('/admin/attendance/data', action: [AdminAttendanceController::class, 'getData']);
     Route::get('/tracking-attendance', [AttendanceTrackingController::class, 'index'])->name('tracking.index');
     Route::post('/tracking-attendance/fetch', [AttendanceTrackingController::class, 'fetch'])->name('tracking.fetch');
-    Route::get('/leaves', [LeaveController::class, 'index']); // user leaves
-    Route::post('/leaves', [LeaveController::class, 'store']); // create
-    Route::delete('/leaves/{id}', [LeaveController::class, 'destroy']); // delete
+    // Route::get('/leaves', [LeaveController::class, 'index']); // user leaves
+    // Route::post('/leaves', [LeaveController::class, 'store']); // create
+    // Route::delete('/leaves/{id}', [LeaveController::class, 'destroy']); // delete
 
     // Admin-only
     Route::get('/admin/leaves', [LeaveController::class, 'all']); // view all
