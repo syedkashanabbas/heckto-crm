@@ -17,8 +17,9 @@ class UsersSeeder extends Seeder
         $employees = [
             'ashir@heckto.com',
             'kashan@heckto.com',
-            'rayaan@heckto.com',
+            'rayyan@heckto.com',
             'sajid@heckto.com',
+            'suleiman@heckto.com',
         ];
 
         // Managers
@@ -33,6 +34,7 @@ class UsersSeeder extends Seeder
         kashan@heckto.com
         rayaan@heckto.com
         sajid@heckto.com
+        suleiman@heckto.com
         Managers:
         ahad@heckto.com
         rehman@heckto.com
@@ -43,7 +45,7 @@ class UsersSeeder extends Seeder
         */
         // Admin
         $admins = [
-            'daniyal@heckto.com',
+            'daniel@heckto.com',
         ];
 
         $this->createUsersWithRole($employees, 'Employee', $password);

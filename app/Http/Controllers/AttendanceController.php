@@ -5,32 +5,41 @@ use App\Models\Attendance;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Notifications\EmployeeClockedIn;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\EmployeeClockedOut;
+
 
 class AttendanceController extends Controller
 {
     
     // Clock In
-    public function clockIn()
-    {
-        $user = Auth::user();
+   public function clockIn()
+{
+    $user = Auth::user();
 
-        // check if already clocked in
-        $existing = Attendance::where('user_id', $user->id)
-                              ->whereNull('clock_out_time')
-                              ->first();
+    $existing = Attendance::where('user_id', $user->id)
+                          ->whereNull('clock_out_time')
+                          ->first();
 
-        if ($existing) {
-            return response()->json(['message' => 'Already clocked in'], 400);
-        }
-
-        $attendance = Attendance::create([
-            'user_id' => $user->id,
-            'status' => 'LOGIN',
-            'clock_in_time' => Carbon::now(),
-        ]);
-
-        return response()->json(['message' => 'Clocked in', 'attendance' => $attendance]);
+    if ($existing) {
+        return response()->json(['message' => 'Already clocked in'], 400);
     }
+
+    $attendance = Attendance::create([
+        'user_id' => $user->id,
+        'status' => 'LOGIN',
+        'clock_in_time' => now(),
+    ]);
+
+    // Send notification to all admins
+    $admins = User::role('Admin')->get();
+    Notification::send($admins, new EmployeeClockedIn($user));
+
+    return response()->json(['message' => 'Clocked in', 'attendance' => $attendance]);
+}
+
 
     // AFK
     public function afk()
@@ -66,26 +75,41 @@ class AttendanceController extends Controller
     }
 
     // Clock Out
-    public function clockOut()
-    {
-        $user = Auth::user();
-        $attendance = Attendance::where('user_id', $user->id)
-                                ->whereNull('clock_out_time')
-                                ->first();
+public function clockOut()
+{
+    $user = Auth::user();
+    $attendance = Attendance::where('user_id', $user->id)
+                            ->whereNull('clock_out_time')
+                            ->first();
 
-        if (!$attendance) {
-            return response()->json(['message' => 'Not clocked in'], 400);
-        }
-
-        $workMinutes = Carbon::parse($attendance->clock_in_time)->diffInMinutes(Carbon::now());
-        $attendance->update([
-            'status' => 'LOGOUT',
-            'clock_out_time' => Carbon::now(),
-            'total_work_minutes' => $workMinutes - $attendance->total_afk_minutes,
-        ]);
-
-        return response()->json(['message' => 'Clocked out', 'attendance' => $attendance]);
+    if (!$attendance) {
+        return response()->json(['message' => 'Not clocked in'], 400);
     }
+
+    $workMinutes = Carbon::parse($attendance->clock_in_time)->diffInMinutes(Carbon::now());
+    $totalWorkMinutes = $workMinutes - $attendance->total_afk_minutes;
+
+    $attendance->update([
+        'status' => 'LOGOUT',
+        'clock_out_time' => Carbon::now(),
+        'total_work_minutes' => $totalWorkMinutes,
+    ]);
+
+    // Calculate formatted time
+    $hours = floor($totalWorkMinutes / 60);
+    $minutes = $totalWorkMinutes % 60;
+
+    // Notify admins
+    $admins = User::role('Admin')->get();
+    Notification::send($admins, new EmployeeClockedOut($user, $hours, $minutes));
+
+    return response()->json([
+        'message' => 'Clocked out',
+        'attendance' => $attendance,
+        'worked_time' => $hours . 'h ' . str_pad($minutes, 2, '0', STR_PAD_LEFT) . 'm',
+    ]);
+}
+
     //Current Status
     public function currentStatus()
 {
