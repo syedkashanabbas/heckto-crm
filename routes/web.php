@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CommonProfileController;
@@ -37,6 +38,12 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
     Route::get('/admin/attendance/data', action: [AdminAttendanceController::class, 'getData']);
     Route::get('/tracking-attendance', [AttendanceTrackingController::class, 'index'])->name('tracking.index');
     Route::post('/tracking-attendance/fetch', [AttendanceTrackingController::class, 'fetch'])->name('tracking.fetch');
+
+
+    //Admin Projects Routes
+     Route::get('/admin/projects', [ProjectController::class, 'index'])->name('admin.projects.index');
+
+
     // Route::get('/leaves', [LeaveController::class, 'index']); // user leaves
     // Route::post('/leaves', [LeaveController::class, 'store']); // create
     // Route::delete('/leaves/{id}', [LeaveController::class, 'destroy']); // delete

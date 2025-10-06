@@ -34,12 +34,12 @@ public function getData(Request $request)
     $data = $records->map(function ($rec) {
         return [
             'user' => $rec->user->name,
-            'clock_in' => $rec->clock_in_time
-                ? Carbon::parse($rec->clock_in_time)->timezone('America/Los_Angeles')->format('d M Y h:i A')
-                : '-',
-            'clock_out' => $rec->clock_out_time
-                ? Carbon::parse($rec->clock_out_time)->timezone('America/Los_Angeles')->format('d M Y h:i A')
-                : '-',
+                        'clock_in' => $rec->clock_in_time
+                    ? Carbon::parse($rec->clock_in_time)->timezone('America/Los_Angeles')->format('d M Y h:i:s A')
+                    : '-',
+                'clock_out' => $rec->clock_out_time
+                    ? Carbon::parse($rec->clock_out_time)->timezone('America/Los_Angeles')->format('d M Y h:i:s A')
+                    : '-',
             'status' => $rec->status,
             'worked' => gmdate("H:i", $rec->total_work_minutes * 60),
         ];
