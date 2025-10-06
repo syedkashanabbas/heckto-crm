@@ -11,8 +11,6 @@ class UsersSeeder extends Seeder
 {
     public function run()
     {
-        $password = '12345678';
-
         // Employees
         $employees = [
             'ashir@heckto.com',
@@ -29,37 +27,26 @@ class UsersSeeder extends Seeder
             'zain@heckto.com',
         ];
 
-        /*
-        ashir@heckto.com
-        kashan@heckto.com
-        rayaan@heckto.com
-        sajid@heckto.com
-        suleiman@heckto.com
-        Managers:
-        ahad@heckto.com
-        rehman@heckto.com
-        zain@heckto.com
-        Admin:
-        daniyal@heckto.com
-
-        */
         // Admin
         $admins = [
             'daniel@heckto.com',
         ];
 
-        $this->createUsersWithRole($employees, 'Employee', $password);
-        $this->createUsersWithRole($managers, 'Manager', $password);
-        $this->createUsersWithRole($admins, 'Admin', $password);
+        $this->createUsersWithRole($employees, 'Employee');
+        $this->createUsersWithRole($managers, 'Manager');
+        $this->createUsersWithRole($admins, 'Admin');
     }
 
-    protected function createUsersWithRole(array $emails, string $role, string $password)
+    protected function createUsersWithRole(array $emails, string $role)
     {
         foreach ($emails as $email) {
+            $username = explode('@', $email)[0];
+            $password = $username . '@0900-+$';
+
             $user = User::firstOrCreate(
                 ['email' => $email],
                 [
-                    'name' => $this->makeName($email),
+                    'name' => ucfirst($username),
                     'email_verified_at' => now(),
                     'password' => Hash::make($password),
                     'remember_token' => Str::random(10),
@@ -68,11 +55,5 @@ class UsersSeeder extends Seeder
 
             $user->assignRole($role);
         }
-    }
-
-    protected function makeName(string $email): string
-    {
-        $local = explode('@', $email)[0];
-        return ucfirst($local);
     }
 }
