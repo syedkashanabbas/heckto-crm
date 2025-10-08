@@ -65,8 +65,7 @@
       <!-- Mobile Searchbar -->
         @include('includes.mobile-searchbar')
 
-      <!-- Right Sidebar -->
-         {{-- @include('includes.right-sidebar') --}}
+   
 
       <!-- Main Content Wrapper -->
     @if(isset($layoutType) && $layoutType === 'kanban')
@@ -88,6 +87,8 @@
     <script script src="{{ asset('assets/js/clock.js') }}"></script>
     <script script src="{{ asset('assets/js/daily-summary.js') }}"></script>
   <script src="{{ asset('assets/js/adminAttendance.js') }}"></script>
+
+    @stack('scripts') 
     <script>
       window.addEventListener("DOMContentLoaded", () => Alpine.start());
     </script>
