@@ -3,24 +3,7 @@
 
 @section('content')
    
-{{-- 
-  <div class="flex">
-    <div
-      class="flex items-center justify-center w-full h-20 rounded-lg bg-slate-200 dark:bg-navy-500"
-    >
-      <p class="text-xl">Content</p>
-    </div>
-    <div class="flex flex-col items-center mx-4 space-y-3">
-      <div class="flex-1 w-px bg-slate-200 dark:bg-navy-500"></div>
-      <p>OR</p>
-      <div class="flex-1 w-px bg-slate-200 dark:bg-navy-500"></div>
-    </div>
-    <div
-      class="flex items-center justify-center w-full h-20 rounded-lg bg-slate-200 dark:bg-navy-500"
-    >
-      <p class="text-xl">Content</p>
-    </div>
-  </div> --}}
+
       <div class="flex items-center justify-between py-5 lg:py-6">
           <div class="flex items-center space-x-1 group">
             <h2
@@ -216,316 +199,82 @@
             </div>
           </div>
         </div>
-        <div
-          class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6 xl:grid-cols-4"
-        >
-          <div class="card">
-            <div class="h-24 rounded-t-lg bg-primary dark:bg-accent">
-              <img
-                class="object-cover object-center w-full h-full rounded-t-lg"
-                src="{{ asset('assets/images/object/object-2.jpg') }}"
-                alt="image"
-              />
+<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6 xl:grid-cols-4">
+    @foreach ($users as $u)
+        <div class="card">
+            <div class="p-2 text-right">
+                <div
+                    x-data="usePopper({placement:'bottom-end',offset:4})"
+                    @click.outside="isShowPopper && (isShowPopper = false)"
+                    class="inline-flex"
+                >
+                    <button
+                        x-ref="popperRef"
+                        @click="isShowPopper = !isShowPopper"
+                        class="p-0 rounded-full btn size-8 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"/>
+                        </svg>
+                    </button>
+                </div>
             </div>
-            <div class="px-4 py-2 sm:px-5">
-              <div class="flex justify-between space-x-4">
-                <div class="-mt-12 avatar size-20">
-                  <img
-                    class="border-2 border-white rounded-full dark:border-navy-700"
-                   
-                    src="{{ asset('assets/images/avatar/avatar-4.jpg') }}"
-                    alt="avatar"
-                  />
+
+            <div class="flex flex-col items-center px-4 pb-5 grow sm:px-5">
+                <div class="avatar size-20">
+                    <img
+                        class="rounded-full"
+                        src="{{ $u->profile_image ? asset('storage/'.$u->profile_image) : asset('assets/images/avatar/avatar-12.jpg') }}"
+                        alt="avatar"
+                    />
                 </div>
-                <div class="flex space-x-2">
-                  <button
-                    class="p-0 rounded-full btn h-7 w-7 bg-primary/10 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
-                  >
-                    <i class="fab fa-twitter"></i>
-                  </button>
-                  <button
-                    class="p-0 rounded-full btn h-7 w-7 bg-primary/10 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
-                  >
-                    <i class="text-base fab fa-instagram"></i>
-                  </button>
-                  <button
-                    class="p-0 rounded-full btn h-7 w-7 bg-primary/10 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
-                  >
-                    <i class="fab fa-facebook-f"></i>
-                  </button>
+
+                <h3 class="pt-3 text-lg font-medium text-slate-700 dark:text-navy-100">
+                    {{ $u->name }}
+                </h3>
+
+                <p class="text-xs-plus">
+                    {{ $u->designation ?? 'No Designation' }}
+                </p>
+
+                <div class="mt-2 text-xs text-slate-500 dark:text-navy-300">
+                    {{ $u->department ?? 'Unassigned Department' }}
                 </div>
-              </div>
-              <h3
-                class="pt-2 text-lg font-medium text-slate-700 dark:text-navy-100"
-              >
-                Konnor Guzman
-              </h3>
-              <p class="text-xs">USA, Washington DC</p>
-              <div class="flex items-center pt-2 space-x-4">
-                <div class="w-9/12">
-                  <div
-                    class="ax-transparent-gridline"
-                    x-init="$nextTick(() => { $el._x_chart = new ApexCharts($el,pages.charts.cardUser1); $el._x_chart.render() });"
-                  ></div>
+
+                {{-- Live Status Badge --}}
+                <div class="mt-3">
+                    @php
+                    $color = match($u->live_status) {
+                  'Clocked In' => 'bg-success/10 border border-success/30 text-success',
+                  'AFK' => 'bg-warning/10 border border-warning/30 text-warning',
+                  default => 'bg-error/10 border border-error/30 text-error'
+              };
+
+                    @endphp
+                    <span class="px-2 py-1 text-xs font-medium rounded-full {{ $color }}">
+                        {{ $u->live_status }}
+                    </span>
                 </div>
-                <div class="w-3/12 text-center">
-                  <p
-                    class="text-xl font-medium text-slate-700 dark:text-navy-100"
-                  >
-                    24
-                  </p>
-                  <p class="text-xs-plus">Posts</p>
+
+                <div class="grid w-full grid-cols-2 gap-2 mt-6">
+                    <button class="px-0 space-x-2 font-medium text-white btn bg-primary hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-4 shrink-0" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-width="2" d="M5 19.111c0-2.413 1.697-4.468 4.004-4.848l.208-.035a17.134 17.134 0 015.576 0l.208.035c2.307.38 4.004 2.435 4.004 4.848C19 20.154 18.181 21 17.172 21H6.828C5.818 21 5 20.154 5 19.111zM16.083 6.938c0 2.174-1.828 3.937-4.083 3.937S7.917 9.112 7.917 6.937C7.917 4.764 9.745 3 12 3s4.083 1.763 4.083 3.938z"/>
+                        </svg>
+                        <span>Profile</span>
+                    </button>
+
+                    <button class="px-0 space-x-2 font-medium btn bg-slate-150 text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                        </svg>
+                        <span>Chat</span>
+                    </button>
                 </div>
-              </div>
-              <div class="flex justify-center py-3 space-x-3">
-                <button
-                  class="p-0 font-medium rounded-full btn size-9 bg-slate-150 text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
-                >
-                  <i class="fa fa-video text-xs-plus"></i>
-                </button>
-                <button
-                  class="p-0 font-medium rounded-full btn size-9 bg-slate-150 text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
-                >
-                  <i class="fa-solid fa-comment-dots"></i>
-                </button>
-                <button
-                  class="p-0 font-medium rounded-full btn size-9 bg-slate-150 text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
-                >
-                  <i class="fa fa-ellipsis-h"></i>
-                </button>
-              </div>
             </div>
-          </div>
-          <div class="card">
-            <div class="h-24 rounded-t-lg bg-primary dark:bg-accent">
-              <img
-                class="object-cover object-center w-full h-full rounded-t-lg"
-                src="{{ asset('assets/images/object/object-7.jpg') }}"
-                alt="image"
-              />
-            </div>
-            <div class="px-4 py-2 sm:px-5">
-              <div class="flex justify-between space-x-4">
-                <div class="-mt-12 avatar size-20">
-                  <img
-                    class="border-2 border-white rounded-full dark:border-navy-700"
-                    src="{{ asset('assets/images/avatar/avatar-5.jpg') }}"
-                    alt="avatar"
-                  />
-                </div>
-                <div class="flex space-x-2">
-                  <button
-                    class="p-0 rounded-full btn h-7 w-7 bg-primary/10 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
-                  >
-                    <i class="fab fa-twitter"></i>
-                  </button>
-                  <button
-                    class="p-0 rounded-full btn h-7 w-7 bg-primary/10 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
-                  >
-                    <i class="text-base fab fa-instagram"></i>
-                  </button>
-                  <button
-                    class="p-0 rounded-full btn h-7 w-7 bg-primary/10 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
-                  >
-                    <i class="fab fa-facebook-f"></i>
-                  </button>
-                </div>
-              </div>
-              <h3
-                class="pt-2 text-lg font-medium text-slate-700 dark:text-navy-100"
-              >
-                Travis Fuller
-              </h3>
-              <p class="text-xs">UK, London</p>
-              <div class="flex items-center pt-2 space-x-4">
-                <div class="w-9/12">
-                  <div
-                    class="ax-transparent-gridline"
-                    x-init="$nextTick(() => { $el._x_chart = new ApexCharts($el,pages.charts.cardUser2); $el._x_chart.render() });"
-                  ></div>
-                </div>
-                <div class="w-3/12 text-center">
-                  <p
-                    class="text-xl font-medium text-slate-700 dark:text-navy-100"
-                  >
-                    11
-                  </p>
-                  <p class="text-xs-plus">Posts</p>
-                </div>
-              </div>
-              <div class="flex justify-center py-3 space-x-3">
-                <button
-                  class="p-0 font-medium rounded-full btn size-9 bg-slate-150 text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
-                >
-                  <i class="fa fa-video text-xs-plus"></i>
-                </button>
-                <button
-                  class="p-0 font-medium rounded-full btn size-9 bg-slate-150 text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
-                >
-                  <i class="fa-solid fa-comment-dots"></i>
-                </button>
-                <button
-                  class="p-0 font-medium rounded-full btn size-9 bg-slate-150 text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
-                >
-                  <i class="fa fa-ellipsis-h"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="h-24 rounded-t-lg bg-primary dark:bg-accent">
-              <img
-                class="object-cover object-center w-full h-full rounded-t-lg"
-                src="{{ asset('assets/images/object/object-1.jpg') }}"
-                alt="image"
-              />
-            </div>
-            <div class="px-4 py-2 sm:px-5">
-              <div class="flex justify-between space-x-4">
-                <div class="-mt-12 avatar size-20">
-                  <img
-                    class="border-2 border-white rounded-full dark:border-navy-700"
-                    src="{{ asset('assets/images/avatar/avatar-20.jpg') }}"
-                    alt="avatar"
-                  />
-                </div>
-                <div class="flex space-x-2">
-                  <button
-                    class="p-0 rounded-full btn h-7 w-7 bg-primary/10 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
-                  >
-                    <i class="fab fa-twitter"></i>
-                  </button>
-                  <button
-                    class="p-0 rounded-full btn h-7 w-7 bg-primary/10 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
-                  >
-                    <i class="text-base fab fa-instagram"></i>
-                  </button>
-                  <button
-                    class="p-0 rounded-full btn h-7 w-7 bg-primary/10 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
-                  >
-                    <i class="fab fa-facebook-f"></i>
-                  </button>
-                </div>
-              </div>
-              <h3
-                class="pt-2 text-lg font-medium text-slate-700 dark:text-navy-100"
-              >
-                Alfredo Elliott
-              </h3>
-              <p class="text-xs">Australia, Sydney</p>
-              <div class="flex items-center pt-2 space-x-4">
-                <div class="w-9/12">
-                  <div
-                    class="ax-transparent-gridline"
-                    x-init="$nextTick(() => { $el._x_chart = new ApexCharts($el,pages.charts.cardUser3); $el._x_chart.render() });"
-                  ></div>
-                </div>
-                <div class="w-3/12 text-center">
-                  <p
-                    class="text-xl font-medium text-slate-700 dark:text-navy-100"
-                  >
-                    171
-                  </p>
-                  <p class="text-xs-plus">Posts</p>
-                </div>
-              </div>
-              <div class="flex justify-center py-3 space-x-3">
-                <button
-                  class="p-0 font-medium rounded-full btn size-9 bg-slate-150 text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
-                >
-                  <i class="fa fa-video text-xs-plus"></i>
-                </button>
-                <button
-                  class="p-0 font-medium rounded-full btn size-9 bg-slate-150 text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
-                >
-                  <i class="fa-solid fa-comment-dots"></i>
-                </button>
-                <button
-                  class="p-0 font-medium rounded-full btn size-9 bg-slate-150 text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
-                >
-                  <i class="fa fa-ellipsis-h"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="h-24 rounded-t-lg bg-primary dark:bg-accent">
-              <img
-                class="object-cover object-center w-full h-full rounded-t-lg"
-                src="{{ asset('assets/images/object/object-5.jpg') }}"
-                alt="image"
-              />
-            </div>
-            <div class="px-4 py-2 sm:px-5">
-              <div class="flex justify-between space-x-4">
-                <div class="-mt-12 avatar size-20">
-                  <img
-                    class="border-2 border-white rounded-full dark:border-navy-700"
-                    src="{{ asset('assets/images/avatar/avatar-18.jpg') }}"
-                    alt="avatar"
-                  />
-                </div>
-                <div class="flex space-x-2">
-                  <button
-                    class="p-0 rounded-full btn h-7 w-7 bg-primary/10 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
-                  >
-                    <i class="fab fa-twitter"></i>
-                  </button>
-                  <button
-                    class="p-0 rounded-full btn h-7 w-7 bg-primary/10 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
-                  >
-                    <i class="text-base fab fa-instagram"></i>
-                  </button>
-                  <button
-                    class="p-0 rounded-full btn h-7 w-7 bg-primary/10 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
-                  >
-                    <i class="fab fa-facebook-f"></i>
-                  </button>
-                </div>
-              </div>
-              <h3
-                class="pt-2 text-lg font-medium text-slate-700 dark:text-navy-100"
-              >
-                Derrick Simmons
-              </h3>
-              <p class="text-xs">Austria, Vienna</p>
-              <div class="flex items-center pt-2 space-x-4">
-                <div class="w-9/12">
-                  <div
-                    class="ax-transparent-gridline"
-                    x-init="$nextTick(() => { $el._x_chart = new ApexCharts($el,pages.charts.cardUser4); $el._x_chart.render() });"
-                  ></div>
-                </div>
-                <div class="w-3/12 text-center">
-                  <p
-                    class="text-xl font-medium text-slate-700 dark:text-navy-100"
-                  >
-                    67
-                  </p>
-                  <p class="text-xs-plus">Posts</p>
-                </div>
-              </div>
-              <div class="flex justify-center py-3 space-x-3">
-                <button
-                  class="p-0 font-medium rounded-full btn size-9 bg-slate-150 text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
-                >
-                  <i class="fa fa-video text-xs-plus"></i>
-                </button>
-                <button
-                  class="p-0 font-medium rounded-full btn size-9 bg-slate-150 text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
-                >
-                  <i class="fa-solid fa-comment-dots"></i>
-                </button>
-                <button
-                  class="p-0 font-medium rounded-full btn size-9 bg-slate-150 text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
-                >
-                  <i class="fa fa-ellipsis-h"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-          
-  
         </div>
+    @endforeach
+</div>
+
 @endsection
 

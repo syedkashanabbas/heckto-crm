@@ -13,23 +13,23 @@ class UsersSeeder extends Seeder
     {
         // Employees
         $employees = [
-            'ashir@heckto.com',
-            'kashan@heckto.com',
-            'rayyan@heckto.com',
-            'sajid@heckto.com',
-            'suleiman@heckto.com',
+            ['email' => 'ashir@heckto.com', 'designation' => 'Video Editor', 'department' => 'Media'],
+            ['email' => 'kashan@heckto.com', 'designation' => 'Full Stack Developer', 'department' => 'Development'],
+            ['email' => 'rayyan@heckto.com', 'designation' => 'Graphic Designer', 'department' => 'Design'],
+            ['email' => 'sajid@heckto.com', 'designation' => 'SEO Specialist', 'department' => 'Marketing'],
+            ['email' => 'suleiman@heckto.com', 'designation' => 'Graphic Designer', 'department' => 'Design'],
         ];
 
         // Managers
         $managers = [
-            'ahad@heckto.com',
-            'rehman@heckto.com',
-            'zain@heckto.com',
+            ['email' => 'ahad@heckto.com', 'designation' => 'Tech Lead', 'department' => 'Development'],
+            ['email' => 'rehman@heckto.com', 'designation' => 'Project Manager', 'department' => 'Operations'],
+            ['email' => 'zain@heckto.com', 'designation' => 'WordPress Developer', 'department' => 'Development'],
         ];
 
         // Admin
         $admins = [
-            'daniel@heckto.com',
+            ['email' => 'daniel@heckto.com', 'designation' => 'Administrator', 'department' => 'Management'],
         ];
 
         $this->createUsersWithRole($employees, 'Employee');
@@ -37,22 +37,32 @@ class UsersSeeder extends Seeder
         $this->createUsersWithRole($admins, 'Admin');
     }
 
-    protected function createUsersWithRole(array $emails, string $role)
+    protected function createUsersWithRole(array $users, string $role)
     {
-        foreach ($emails as $email) {
+        foreach ($users as $userData) {
+            $email = $userData['email'];
             $username = explode('@', $email)[0];
             $password = $username . '@0900-+$';
 
+            // Create or find user
             $user = User::firstOrCreate(
                 ['email' => $email],
                 [
                     'name' => ucfirst($username),
+                    'designation' => $userData['designation'] ?? null,
+                    'department' => $userData['department'] ?? null,
+                    'status' => 'Active',
                     'email_verified_at' => now(),
                     'password' => Hash::make($password),
                     'remember_token' => Str::random(10),
                 ]
             );
 
+            // Assign unique employee code (based on actual ID)
+            $user->employee_code = 'HKT-' . str_pad($user->id, 2, '0', STR_PAD_LEFT);
+            $user->save();
+
+            // Assign role
             $user->assignRole($role);
         }
     }

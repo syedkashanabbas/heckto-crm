@@ -1,79 +1,80 @@
 @extends('layouts.master-layout')
 
 @section('content')
-<div class="max-w-md mx-auto mt-10 dark:bg-navy-800 bg-white p-6 rounded-2xl shadow-lg text-center space-y-6">
+<div class="max-w-md p-6 mx-auto mt-10 space-y-6 text-center bg-white shadow-lg dark:bg-navy-800 rounded-2xl">
 
-    <h2 class="text-2xl font-bold text-gray-800">Attendance System</h2>
+    <h2 class="text-2xl font-bold text-gray-800 dark:text-navy-100">Attendance System</h2>
 
     <!-- Status -->
     <div class="text-lg">
         Status:
-        <span id="statusText" class="font-semibold dark:text-white text-gray-600">Not Logged In</span>
+        <span id="statusText" class="font-semibold text-gray-600 dark:text-white">Not Logged In</span>
     </div>
 
     <!-- Timer -->
-    <div id="timerDisplay" class="text-4xl font-mono font-bold dark:text-white text-blue-600">
+    <div id="timerDisplay" class="font-mono text-4xl font-bold text-primary dark:text-accent-light">
         00:00:00
     </div>
 
     <!-- Buttons -->
     <div class="flex justify-center gap-4 mt-6">
         <button id="clockInBtn"
-            class="px-4 py-2 bg-green-500 hover:bg-green-600 text-slate-500 rounded-xl shadow-md transition">
+            class="px-4 py-2 transition border shadow-md rounded-xl bg-success/10 border-success/30 text-success hover:bg-success/20 focus:bg-success/20 active:bg-success/25">
             Clock In
         </button>
 
         <button id="afkBtn"
-            class="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-slate-500 dark:text-white rounded-xl shadow-md transition hidden">
+            class="hidden px-4 py-2 transition border shadow-md rounded-xl bg-warning/10 border-warning/30 text-warning hover:bg-warning/20 focus:bg-warning/20 active:bg-warning/25">
             AFK
         </button>
 
         <button id="clockOutBtn"
-            class="px-4 py-2 bg-red-500 hover:bg-red-600 text-slate-500 rounded-xl shadow-md dark:text-white transition hidden">
+            class="hidden px-4 py-2 transition border shadow-md rounded-xl bg-error/10 border-error/30 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25">
             Clock Out
         </button>
     </div>
 </div>
+
 <div class="p-6 space-y-10">
 
 
 
   {{-- Middle Row (2 widgets) --}}
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <div class="bg-white dark:bg-navy-800 p-6 rounded-2xl shadow-lg text-center">
-      <h3 class="text-lg font-semibold mb-3 text-slate-800 dark:text-white">Tasks Completed</h3>
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+    <div class="p-6 text-center bg-white shadow-lg dark:bg-navy-800 rounded-2xl">
+      <h3 class="mb-3 text-lg font-semibold text-slate-800 dark:text-white">Tasks Completed</h3>
       <p id="tasksCompleted" class="text-3xl font-bold text-indigo-600">18</p>
     </div>
   </div>
 
   {{-- Daily Summary --}}
-<div class="bg-white dark:bg-navy-800 p-6 rounded-2xl mt-6 shadow-lg">
-  <h3 class="text-lg font-semibold text-slate-800 dark:text-white mb-4">Daily Summary</h3>
+<div class="p-6 mt-6 bg-white shadow-lg dark:bg-navy-800 rounded-2xl">
+  <h3 class="mb-4 text-lg font-semibold text-slate-800 dark:text-white">Daily Summary</h3>
 
   <!-- Date Picker -->
   <label class="relative flex mb-3">
     <input id="summaryDate"
       x-init="$el._x_flatpickr = flatpickr($el, { dateFormat: 'Y-m-d' })"
-      class="form-input peer w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 pl-9"
+      class="w-full px-3 py-2 bg-transparent border rounded-lg form-input peer border-slate-300 pl-9"
       placeholder="Choose date..."
       type="text"
     />
-    <span class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400">
+    <span class="absolute flex items-center justify-center w-10 h-full pointer-events-none text-slate-400">
       📅
     </span>
   </label>
 
   <input type="text" id="summaryTitle"
-    class="form-input w-full bg-transparent p-3 mb-4 text-lg font-medium placeholder:text-slate-400/70"
+    class="w-full p-3 mb-4 text-lg font-medium bg-transparent form-input placeholder:text-slate-400/70"
     placeholder="Title" />
 
   <textarea id="summaryText" rows="5"
-    class="form-textarea w-full resize-none bg-transparent p-3 placeholder:text-slate-400/70"
+    class="w-full p-3 bg-transparent resize-none form-textarea placeholder:text-slate-400/70"
     placeholder="Write your daily summary..."></textarea>
 
   <div class="flex justify-end mt-4">
     <button id="saveSummaryBtn"
-      class="btn rounded-md bg-primary px-4 text-xs-plus font-medium text-white hover:bg-primary-focus">
+      class="px-4 font-medium text-white rounded-md btn bg-primary text-xs-plus hover:bg-primary-focus">
       Save Daily Summary
     </button>
   </div>
