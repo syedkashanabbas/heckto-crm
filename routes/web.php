@@ -38,6 +38,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
     Route::get('/admin/attendance/data', action: [AdminAttendanceController::class, 'getData']);
     Route::get('/tracking-attendance', [AttendanceTrackingController::class, 'index'])->name('tracking.index');
     Route::post('/tracking-attendance/fetch', [AttendanceTrackingController::class, 'fetch'])->name('tracking.fetch');
+    Route::get('/attendance/report', [AttendanceController::class, 'report'])->name('attendance.report');
 
 
     //Admin Projects Routes
