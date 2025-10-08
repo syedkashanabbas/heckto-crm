@@ -34,13 +34,6 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
     Route::get('/attendance/total-hours', [AttendanceController::class, 'getTotalWorkedHours'])->name('attendance.total.hours');
     Route::get('/daily-summary', [DailySummaryController::class, 'index']);
     Route::post('/daily-summary', [DailySummaryController::class, 'storeOrUpdate']);
-     Route::get('/admin/attendance', [AdminAttendanceController::class, 'index'])->name('admin.attendance');
-    Route::get('/admin/attendance/data', action: [AdminAttendanceController::class, 'getData']);
-    Route::get('/tracking-attendance', [AttendanceTrackingController::class, 'index'])->name('tracking.index');
-    Route::post('/tracking-attendance/fetch', action: [AttendanceTrackingController::class, 'fetch'])->name('tracking.fetch');
-    Route::get('/attendance/report/index', action: [AttendanceTrackingController::class, 'reportIndex'])->name('attendance.report.index');
-    Route::get('/attendance/report', [AttendanceTrackingController::class, 'report'])->name('attendance.report');
-
 
     //Admin Projects Routes
      Route::get('/admin/projects', [ProjectController::class, 'index'])->name('admin.projects.index');
@@ -50,12 +43,23 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
     // Route::post('/leaves', [LeaveController::class, 'store']); // create
     // Route::delete('/leaves/{id}', [LeaveController::class, 'destroy']); // delete
 
-    // Admin-only
-    Route::get('/admin/leaves', [LeaveController::class, 'all']); // view all
-    Route::post('/admin/leaves/{id}/status', [LeaveController::class, 'updateStatus']);
 
     });
+    //Admin Routes
+    Route::middleware(['auth', 'role:Admin'])->group(function () {
+    
+    
+        // Admin-only
+    Route::get('/admin/leaves', [LeaveController::class, 'all']); // view all
+    Route::post('/admin/leaves/{id}/status', [LeaveController::class, 'updateStatus']);
+     Route::get('/admin/attendance', [AdminAttendanceController::class, 'index'])->name('admin.attendance');
+    Route::get('/admin/attendance/data', action: [AdminAttendanceController::class, 'getData']);
+    Route::get('/tracking-attendance', [AttendanceTrackingController::class, 'index'])->name('tracking.index');
+    Route::post('/tracking-attendance/fetch', action: [AttendanceTrackingController::class, 'fetch'])->name('tracking.fetch');
+    Route::get('/attendance/report/index', action: [AttendanceTrackingController::class, 'reportIndex'])->name('attendance.report.index');
+    Route::get('/attendance/report', [AttendanceTrackingController::class, 'report'])->name('attendance.report');
 
-  
 
+
+    });
 require __DIR__.'/auth.php';
