@@ -3,8 +3,26 @@
 
 @section('content')
    
- <div class="flex items-center justify-between py-5 lg:py-6">
-          <div class="group flex items-center space-x-1">
+{{-- 
+  <div class="flex">
+    <div
+      class="flex items-center justify-center w-full h-20 rounded-lg bg-slate-200 dark:bg-navy-500"
+    >
+      <p class="text-xl">Content</p>
+    </div>
+    <div class="flex flex-col items-center mx-4 space-y-3">
+      <div class="flex-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+      <p>OR</p>
+      <div class="flex-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+    </div>
+    <div
+      class="flex items-center justify-center w-full h-20 rounded-lg bg-slate-200 dark:bg-navy-500"
+    >
+      <p class="text-xl">Content</p>
+    </div>
+  </div> --}}
+      <div class="flex items-center justify-between py-5 lg:py-6">
+          <div class="flex items-center space-x-1 group">
             <h2
               class="text-xl font-medium text-slate-700 line-clamp-1 dark:text-navy-50 lg:text-2xl"
             >
@@ -18,7 +36,7 @@
               <button
                 x-ref="popperRef"
                 @click="isShowPopper = !isShowPopper"
-                class="btn size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                class="p-0 rounded-full btn size-8 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
               >
                 <i class="fas fa-chevron-down"></i>
               </button>
@@ -35,7 +53,7 @@
                     <li>
                       <a
                         href="pages-card-user-2.html#"
-                        class="flex h-8 items-center space-x-3 px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                        class="flex items-center h-8 px-3 pr-8 space-x-3 font-medium tracking-wide transition-all outline-hidden hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +75,7 @@
                     <li>
                       <a
                         href="pages-card-user-2.html#"
-                        class="flex h-8 items-center space-x-3 px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                        class="flex items-center h-8 px-3 pr-8 space-x-3 font-medium tracking-wide transition-all outline-hidden hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +97,7 @@
                     <li>
                       <a
                         href="pages-card-user-2.html#"
-                        class="flex h-8 items-center space-x-3 px-3 pr-8 font-medium tracking-wide outline-hidden transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
+                        class="flex items-center h-8 px-3 pr-8 space-x-3 font-medium tracking-wide transition-all outline-hidden hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -112,16 +130,16 @@
           <div class="flex items-center space-x-2">
             <label class="relative hidden sm:flex">
               <input
-                class="form-input peer h-9 w-full rounded-full border border-slate-300 bg-transparent px-3 py-2 pl-9 text-xs-plus placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                class="w-full px-3 py-2 bg-transparent border rounded-full form-input peer h-9 border-slate-300 pl-9 text-xs-plus placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
                 placeholder="Search users..."
                 type="text"
               />
               <span
-                class="pointer-events-none absolute flex h-full w-10 items-center justify-center text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent"
+                class="absolute flex items-center justify-center w-10 h-full pointer-events-none text-slate-400 peer-focus:text-primary dark:text-navy-300 dark:peer-focus:text-accent"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="size-4 transition-colors duration-200"
+                  class="transition-colors duration-200 size-4"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -134,7 +152,7 @@
 
             <div class="flex">
               <button
-                class="btn size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25 sm:hidden sm:h-9 sm:w-9"
+                class="p-0 rounded-full btn size-8 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25 sm:hidden sm:h-9 sm:w-9"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -157,7 +175,7 @@
                 </svg>
               </button>
               <button
-                class="btn size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25 sm:h-9 sm:w-9"
+                class="p-0 rounded-full btn size-8 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25 sm:h-9 sm:w-9"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -172,7 +190,7 @@
                 </svg>
               </button>
               <button
-                class="btn size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25 sm:h-9 sm:w-9"
+                class="p-0 rounded-full btn size-8 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25 sm:h-9 sm:w-9"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -204,16 +222,16 @@
           <div class="card">
             <div class="h-24 rounded-t-lg bg-primary dark:bg-accent">
               <img
-                class="h-full w-full rounded-t-lg object-cover object-center"
+                class="object-cover object-center w-full h-full rounded-t-lg"
                 src="{{ asset('assets/images/object/object-2.jpg') }}"
                 alt="image"
               />
             </div>
             <div class="px-4 py-2 sm:px-5">
               <div class="flex justify-between space-x-4">
-                <div class="avatar -mt-12 size-20">
+                <div class="-mt-12 avatar size-20">
                   <img
-                    class="rounded-full border-2 border-white dark:border-navy-700"
+                    class="border-2 border-white rounded-full dark:border-navy-700"
                    
                     src="{{ asset('assets/images/avatar/avatar-4.jpg') }}"
                     alt="avatar"
@@ -221,17 +239,17 @@
                 </div>
                 <div class="flex space-x-2">
                   <button
-                    class="btn h-7 w-7 rounded-full bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+                    class="p-0 rounded-full btn h-7 w-7 bg-primary/10 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
                   >
                     <i class="fab fa-twitter"></i>
                   </button>
                   <button
-                    class="btn h-7 w-7 rounded-full bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+                    class="p-0 rounded-full btn h-7 w-7 bg-primary/10 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
                   >
-                    <i class="fab fa-instagram text-base"></i>
+                    <i class="text-base fab fa-instagram"></i>
                   </button>
                   <button
-                    class="btn h-7 w-7 rounded-full bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+                    class="p-0 rounded-full btn h-7 w-7 bg-primary/10 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
                   >
                     <i class="fab fa-facebook-f"></i>
                   </button>
@@ -243,7 +261,7 @@
                 Konnor Guzman
               </h3>
               <p class="text-xs">USA, Washington DC</p>
-              <div class="flex items-center space-x-4 pt-2">
+              <div class="flex items-center pt-2 space-x-4">
                 <div class="w-9/12">
                   <div
                     class="ax-transparent-gridline"
@@ -259,19 +277,19 @@
                   <p class="text-xs-plus">Posts</p>
                 </div>
               </div>
-              <div class="flex justify-center space-x-3 py-3">
+              <div class="flex justify-center py-3 space-x-3">
                 <button
-                  class="btn size-9 rounded-full bg-slate-150 p-0 font-medium text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
+                  class="p-0 font-medium rounded-full btn size-9 bg-slate-150 text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
                 >
                   <i class="fa fa-video text-xs-plus"></i>
                 </button>
                 <button
-                  class="btn size-9 rounded-full bg-slate-150 p-0 font-medium text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
+                  class="p-0 font-medium rounded-full btn size-9 bg-slate-150 text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
                 >
                   <i class="fa-solid fa-comment-dots"></i>
                 </button>
                 <button
-                  class="btn size-9 rounded-full bg-slate-150 p-0 font-medium text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
+                  class="p-0 font-medium rounded-full btn size-9 bg-slate-150 text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
                 >
                   <i class="fa fa-ellipsis-h"></i>
                 </button>
@@ -281,33 +299,33 @@
           <div class="card">
             <div class="h-24 rounded-t-lg bg-primary dark:bg-accent">
               <img
-                class="h-full w-full rounded-t-lg object-cover object-center"
+                class="object-cover object-center w-full h-full rounded-t-lg"
                 src="{{ asset('assets/images/object/object-7.jpg') }}"
                 alt="image"
               />
             </div>
             <div class="px-4 py-2 sm:px-5">
               <div class="flex justify-between space-x-4">
-                <div class="avatar -mt-12 size-20">
+                <div class="-mt-12 avatar size-20">
                   <img
-                    class="rounded-full border-2 border-white dark:border-navy-700"
+                    class="border-2 border-white rounded-full dark:border-navy-700"
                     src="{{ asset('assets/images/avatar/avatar-5.jpg') }}"
                     alt="avatar"
                   />
                 </div>
                 <div class="flex space-x-2">
                   <button
-                    class="btn h-7 w-7 rounded-full bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+                    class="p-0 rounded-full btn h-7 w-7 bg-primary/10 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
                   >
                     <i class="fab fa-twitter"></i>
                   </button>
                   <button
-                    class="btn h-7 w-7 rounded-full bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+                    class="p-0 rounded-full btn h-7 w-7 bg-primary/10 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
                   >
-                    <i class="fab fa-instagram text-base"></i>
+                    <i class="text-base fab fa-instagram"></i>
                   </button>
                   <button
-                    class="btn h-7 w-7 rounded-full bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+                    class="p-0 rounded-full btn h-7 w-7 bg-primary/10 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
                   >
                     <i class="fab fa-facebook-f"></i>
                   </button>
@@ -319,7 +337,7 @@
                 Travis Fuller
               </h3>
               <p class="text-xs">UK, London</p>
-              <div class="flex items-center space-x-4 pt-2">
+              <div class="flex items-center pt-2 space-x-4">
                 <div class="w-9/12">
                   <div
                     class="ax-transparent-gridline"
@@ -335,19 +353,19 @@
                   <p class="text-xs-plus">Posts</p>
                 </div>
               </div>
-              <div class="flex justify-center space-x-3 py-3">
+              <div class="flex justify-center py-3 space-x-3">
                 <button
-                  class="btn size-9 rounded-full bg-slate-150 p-0 font-medium text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
+                  class="p-0 font-medium rounded-full btn size-9 bg-slate-150 text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
                 >
                   <i class="fa fa-video text-xs-plus"></i>
                 </button>
                 <button
-                  class="btn size-9 rounded-full bg-slate-150 p-0 font-medium text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
+                  class="p-0 font-medium rounded-full btn size-9 bg-slate-150 text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
                 >
                   <i class="fa-solid fa-comment-dots"></i>
                 </button>
                 <button
-                  class="btn size-9 rounded-full bg-slate-150 p-0 font-medium text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
+                  class="p-0 font-medium rounded-full btn size-9 bg-slate-150 text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
                 >
                   <i class="fa fa-ellipsis-h"></i>
                 </button>
@@ -357,33 +375,33 @@
           <div class="card">
             <div class="h-24 rounded-t-lg bg-primary dark:bg-accent">
               <img
-                class="h-full w-full rounded-t-lg object-cover object-center"
+                class="object-cover object-center w-full h-full rounded-t-lg"
                 src="{{ asset('assets/images/object/object-1.jpg') }}"
                 alt="image"
               />
             </div>
             <div class="px-4 py-2 sm:px-5">
               <div class="flex justify-between space-x-4">
-                <div class="avatar -mt-12 size-20">
+                <div class="-mt-12 avatar size-20">
                   <img
-                    class="rounded-full border-2 border-white dark:border-navy-700"
+                    class="border-2 border-white rounded-full dark:border-navy-700"
                     src="{{ asset('assets/images/avatar/avatar-20.jpg') }}"
                     alt="avatar"
                   />
                 </div>
                 <div class="flex space-x-2">
                   <button
-                    class="btn h-7 w-7 rounded-full bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+                    class="p-0 rounded-full btn h-7 w-7 bg-primary/10 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
                   >
                     <i class="fab fa-twitter"></i>
                   </button>
                   <button
-                    class="btn h-7 w-7 rounded-full bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+                    class="p-0 rounded-full btn h-7 w-7 bg-primary/10 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
                   >
-                    <i class="fab fa-instagram text-base"></i>
+                    <i class="text-base fab fa-instagram"></i>
                   </button>
                   <button
-                    class="btn h-7 w-7 rounded-full bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+                    class="p-0 rounded-full btn h-7 w-7 bg-primary/10 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
                   >
                     <i class="fab fa-facebook-f"></i>
                   </button>
@@ -395,7 +413,7 @@
                 Alfredo Elliott
               </h3>
               <p class="text-xs">Australia, Sydney</p>
-              <div class="flex items-center space-x-4 pt-2">
+              <div class="flex items-center pt-2 space-x-4">
                 <div class="w-9/12">
                   <div
                     class="ax-transparent-gridline"
@@ -411,19 +429,19 @@
                   <p class="text-xs-plus">Posts</p>
                 </div>
               </div>
-              <div class="flex justify-center space-x-3 py-3">
+              <div class="flex justify-center py-3 space-x-3">
                 <button
-                  class="btn size-9 rounded-full bg-slate-150 p-0 font-medium text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
+                  class="p-0 font-medium rounded-full btn size-9 bg-slate-150 text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
                 >
                   <i class="fa fa-video text-xs-plus"></i>
                 </button>
                 <button
-                  class="btn size-9 rounded-full bg-slate-150 p-0 font-medium text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
+                  class="p-0 font-medium rounded-full btn size-9 bg-slate-150 text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
                 >
                   <i class="fa-solid fa-comment-dots"></i>
                 </button>
                 <button
-                  class="btn size-9 rounded-full bg-slate-150 p-0 font-medium text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
+                  class="p-0 font-medium rounded-full btn size-9 bg-slate-150 text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
                 >
                   <i class="fa fa-ellipsis-h"></i>
                 </button>
@@ -433,33 +451,33 @@
           <div class="card">
             <div class="h-24 rounded-t-lg bg-primary dark:bg-accent">
               <img
-                class="h-full w-full rounded-t-lg object-cover object-center"
+                class="object-cover object-center w-full h-full rounded-t-lg"
                 src="{{ asset('assets/images/object/object-5.jpg') }}"
                 alt="image"
               />
             </div>
             <div class="px-4 py-2 sm:px-5">
               <div class="flex justify-between space-x-4">
-                <div class="avatar -mt-12 size-20">
+                <div class="-mt-12 avatar size-20">
                   <img
-                    class="rounded-full border-2 border-white dark:border-navy-700"
+                    class="border-2 border-white rounded-full dark:border-navy-700"
                     src="{{ asset('assets/images/avatar/avatar-18.jpg') }}"
                     alt="avatar"
                   />
                 </div>
                 <div class="flex space-x-2">
                   <button
-                    class="btn h-7 w-7 rounded-full bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+                    class="p-0 rounded-full btn h-7 w-7 bg-primary/10 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
                   >
                     <i class="fab fa-twitter"></i>
                   </button>
                   <button
-                    class="btn h-7 w-7 rounded-full bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+                    class="p-0 rounded-full btn h-7 w-7 bg-primary/10 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
                   >
-                    <i class="fab fa-instagram text-base"></i>
+                    <i class="text-base fab fa-instagram"></i>
                   </button>
                   <button
-                    class="btn h-7 w-7 rounded-full bg-primary/10 p-0 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
+                    class="p-0 rounded-full btn h-7 w-7 bg-primary/10 text-primary hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:bg-accent-light/10 dark:text-accent-light dark:hover:bg-accent-light/20 dark:focus:bg-accent-light/20 dark:active:bg-accent-light/25"
                   >
                     <i class="fab fa-facebook-f"></i>
                   </button>
@@ -471,7 +489,7 @@
                 Derrick Simmons
               </h3>
               <p class="text-xs">Austria, Vienna</p>
-              <div class="flex items-center space-x-4 pt-2">
+              <div class="flex items-center pt-2 space-x-4">
                 <div class="w-9/12">
                   <div
                     class="ax-transparent-gridline"
@@ -487,19 +505,19 @@
                   <p class="text-xs-plus">Posts</p>
                 </div>
               </div>
-              <div class="flex justify-center space-x-3 py-3">
+              <div class="flex justify-center py-3 space-x-3">
                 <button
-                  class="btn size-9 rounded-full bg-slate-150 p-0 font-medium text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
+                  class="p-0 font-medium rounded-full btn size-9 bg-slate-150 text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
                 >
                   <i class="fa fa-video text-xs-plus"></i>
                 </button>
                 <button
-                  class="btn size-9 rounded-full bg-slate-150 p-0 font-medium text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
+                  class="p-0 font-medium rounded-full btn size-9 bg-slate-150 text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
                 >
                   <i class="fa-solid fa-comment-dots"></i>
                 </button>
                 <button
-                  class="btn size-9 rounded-full bg-slate-150 p-0 font-medium text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
+                  class="p-0 font-medium rounded-full btn size-9 bg-slate-150 text-slate-800 hover:bg-slate-200 hover:shadow-lg hover:shadow-slate-200/50 focus:bg-slate-200 focus:shadow-lg focus:shadow-slate-200/50 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:hover:shadow-navy-450/50 dark:focus:bg-navy-450 dark:focus:shadow-navy-450/50 dark:active:bg-navy-450/90"
                 >
                   <i class="fa fa-ellipsis-h"></i>
                 </button>
