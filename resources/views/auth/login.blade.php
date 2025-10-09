@@ -106,15 +106,7 @@
             </form>
 
             <!-- Register -->
-            <div class="mt-4 text-center text-xs-plus">
-              <p>
-                <span>Don’t have an account?</span>
-                <a href="{{ route('register') }}"
-                   class="text-primary hover:text-primary-focus dark:text-accent-light">
-                   Create account
-                </a>
-              </p>
-            </div>
+           
           </div>
         </div>
       </main>

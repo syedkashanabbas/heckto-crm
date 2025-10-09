@@ -479,7 +479,7 @@
                     </svg>
                   </a>
                   <ul x-collapse x-show="expanded">
-                    @role('Employee')
+                    @hasanyrole('Employee|Manager')
                     <li>
                       <a
                         x-data="navLink"
@@ -506,7 +506,7 @@
                         </div>
                       </a>
                     </li>
-                    @endrole
+                    @endhasanyrole
 
                     @role('Admin')
                     <li>
