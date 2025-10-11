@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('designation')->nullable()->after('name');
             $table->string('department')->nullable()->after('designation');
-            $table->string('employee_code')->after('department');
+            // $table->string('employee_code')
+            $table->string('employee_code')->nullable()->after('department');
             $table->date('joining_date')->nullable()->after('employee_code');
             $table->decimal('salary', 10, 2)->nullable()->after('joining_date');
             $table->string('status')->nullable()->after('salary'); 
