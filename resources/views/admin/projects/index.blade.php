@@ -14,11 +14,16 @@
             <p class="mt-1 hidden sm:block">List of your ongoing projects</p>
           </div>
            @role('Admin')
-           <div x-data="{showModal:false}">
+           <div   x-data="{
+              showcreateModal: false,
+              
+            }"
+            >
 
         
           <button
-             @click="showModal = true"
+             @click="showcreateModal = true"
+           
             class="btn space-x-2 bg-primary font-medium text-white shadow-lg shadow-primary/50 hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:shadow-accent/50 dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90">
             <svg
               xmlns="http://www.w3.org/2000/svg"

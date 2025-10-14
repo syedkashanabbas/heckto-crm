@@ -87,6 +87,8 @@
     <script script src="{{ asset('assets/js/clock.js') }}"></script>
     <script script src="{{ asset('assets/js/daily-summary.js') }}"></script>
   <script src="{{ asset('assets/js/adminAttendance.js') }}"></script>
+  <script src="{{ asset('assets/js/projects/createProject.js') }}"></script>
+
 
     @stack('scripts') 
     <script>

@@ -11,6 +11,9 @@ use App\Http\Controllers\DailySummaryController;
 use App\Http\Controllers\AdminAttendanceController;
 use App\Http\Controllers\AttendanceTrackingController;
 use App\Http\Controllers\LeaveController;
+use App\Http\Controllers\UserMiniController;
+
+
 
 
 Route::get('/', function () {
@@ -36,7 +39,8 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
     Route::post('/daily-summary', [DailySummaryController::class, 'storeOrUpdate']);
 
     //  Route::get('/admin/projects', [ProjectController::class, 'index'])->name('projects.index');
-
+    //Users List Mini
+    Route::get('/users/mini', [UserMiniController::class, 'index']);
 
     // Project Routes
     Route::prefix('projects')->group(function () {

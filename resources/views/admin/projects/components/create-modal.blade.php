@@ -1,14 +1,32 @@
 <template x-teleport="#x-teleport-target">
-  <div
+    <div
     class="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden px-4 py-6 sm:px-5"
-    x-show="showModal"
+    x-show="showcreateModal"
+    x-cloak
+      x-data="{
+             
+              users: [],
+              async loadUsers() {
+                try {
+                  const res = await fetch('/users/mini');
+                  const data = await res.json();
+                  if (data.success && Array.isArray(data.data)) {
+                    this.users = data.data;
+                  }
+                } catch (err) {
+                  console.error('Failed to load users', err);
+                }
+              }
+            }"
     role="dialog"
-    @keydown.window.escape="showModal = false"
+    @keydown.window.escape="showcreateModal = false"
+    x-effect="if (showcreateModal) loadUsers()"
   >
+
     <div
       class="absolute inset-0 bg-slate-900/60 transition-opacity duration-300"
-      @click="showModal = false"
-      x-show="showModal"
+      @click="showcreateModal = false"
+      x-show="showcreateModal"
       x-transition:enter="ease-out"
       x-transition:enter-start="opacity-0"
       x-transition:enter-end="opacity-100"
@@ -19,7 +37,7 @@
 
     <div
       class="relative w-full max-w-lg origin-top rounded-lg bg-white shadow-xl transition-all duration-300 dark:bg-navy-700"
-      x-show="showModal"
+      x-show="showcreateModal"
       x-transition:enter="ease-out"
       x-transition:enter-start="opacity-0 scale-95"
       x-transition:enter-end="opacity-100 scale-100"
@@ -30,7 +48,7 @@
       <div class="flex justify-between rounded-t-lg bg-slate-200 px-4 py-3 dark:bg-navy-800 sm:px-5">
         <h3 class="text-base font-medium text-slate-700 dark:text-navy-100">Create New Project</h3>
         <button
-          @click="showModal = false"
+          @click="showcreateModal = false"
           class="btn -mr-1.5 size-7 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
         >
           <svg xmlns="http://www.w3.org/2000/svg" class="size-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -94,22 +112,33 @@
           ></textarea>
         </label>
 
-        <!-- Users (multi-select) -->
-        <label class="block">
-          <span>Assign Users:</span>
-          <select
-            x-init="$el._tom = new Tom($el)"
-            class="mt-1.5 w-full"
-            multiple
-            placeholder="Select team members..."
-            autocomplete="off"
-          >
-            <option value="1">John Doe</option>
-            <option value="2">Jane Smith</option>
-            <option value="3">Ali Khan</option>
-            <option value="4">Sarah Connor</option>
-          </select>
-        </label>
+      <label class="block">
+  <span>Assign Users:</span>
+  <select
+    x-ref="userSelect"
+    x-init="$el._tom = new Tom($el)"
+    x-effect="
+      if (users.length && $refs.userSelect._tom) {
+        // clear previous options
+        $refs.userSelect.innerHTML = '';
+        // re-render fresh ones
+        users.forEach(u => {
+          const opt = document.createElement('option');
+          opt.value = u.id;
+          opt.textContent = u.name;
+          $refs.userSelect.appendChild(opt);
+        });
+        // Tom Select refresh
+        $refs.userSelect._tom.sync();
+      }
+    "
+    class="mt-1.5 w-full"
+    multiple
+    placeholder="Select team members..."
+    autocomplete="off"
+  ></select>
+</label>
+
 
         <!-- Dates -->
         <div class="grid grid-cols-2 gap-3">
@@ -147,14 +176,16 @@
         <!-- Status -->
         <label class="block">
           <span>Status:</span>
-          <select
-            class="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent"
-          >
-            <option>Planned</option>
-            <option>In Progress</option>
-            <option>On Hold</option>
-            <option>Completed</option>
-          </select>
+         <select
+        class="form-select mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent"
+      >
+        <option value="draft">Draft</option>
+        <option value="active">Active</option>
+        <option value="on_hold">On Hold</option>
+        <option value="completed">Completed</option>
+        <option value="archived">Archived</option>
+      </select>
+
         </label>
 
         <!-- Progress Range -->
@@ -175,16 +206,19 @@
 
         <div class="space-x-2 text-right pt-4">
           <button
-            @click="showModal = false"
+            @click="showcreateModal = false"
             class="btn min-w-[7rem] rounded-full border border-slate-300 font-medium text-slate-800 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-50 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90"
           >
             Cancel
           </button>
-          <button
-            class="btn min-w-[7rem] rounded-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
-          >
-            Create
-          </button>
+           <button
+          id="createProjectBtn"
+          class="btn min-w-[7rem] rounded-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
+        >
+          Create
+        </button>
+
+
         </div>
       </div>
     </div>
