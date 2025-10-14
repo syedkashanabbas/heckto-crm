@@ -77,6 +77,8 @@
             @yield('content')
         </main>2
     @endif
+
+
       <!-- Main Content Wrapper --> 
 
       
@@ -86,8 +88,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script script src="{{ asset('assets/js/clock.js') }}"></script>
     <script script src="{{ asset('assets/js/daily-summary.js') }}"></script>
-  <script src="{{ asset('assets/js/adminAttendance.js') }}"></script>
-  <script src="{{ asset('assets/js/projects/createProject.js') }}"></script>
+    <script src="{{ asset('assets/js/adminAttendance.js') }}"></script>
+    <script src="{{ asset('assets/js/projects/createProject.js') }}"></script>
 
 
     @stack('scripts') 
