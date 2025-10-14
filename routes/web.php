@@ -35,14 +35,17 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
     Route::get('/daily-summary', [DailySummaryController::class, 'index']);
     Route::post('/daily-summary', [DailySummaryController::class, 'storeOrUpdate']);
 
-    //Admin Projects Routes
-     Route::get('/admin/projects', [ProjectController::class, 'index'])->name('admin.projects.index');
+    //  Route::get('/admin/projects', [ProjectController::class, 'index'])->name('projects.index');
 
 
-    // Route::get('/leaves', [LeaveController::class, 'index']); // user leaves
-    // Route::post('/leaves', [LeaveController::class, 'store']); // create
-    // Route::delete('/leaves/{id}', [LeaveController::class, 'destroy']); // delete
-
+    // Project Routes
+    Route::prefix('projects')->group(function () {
+    Route::get('/', [ProjectController::class, 'index'])->name('projects.index'); // List projects
+    Route::post('/', [ProjectController::class, 'store'])->name('projects.store'); // Create project
+    Route::get('/{project}', [ProjectController::class, 'show'])->name('projects.show'); // View one
+    Route::put('/{project}', [ProjectController::class, 'update'])->name('projects.update'); // Update project
+    Route::delete('/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy'); // Delete project
+    });
 
     });
     //Admin Routes
@@ -59,6 +62,8 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
     Route::get('/attendance/report/index', action: [AttendanceTrackingController::class, 'reportIndex'])->name('attendance.report.index');
     Route::get('/attendance/report', [AttendanceTrackingController::class, 'report'])->name('attendance.report');
 
+
+    
 
 
     });
