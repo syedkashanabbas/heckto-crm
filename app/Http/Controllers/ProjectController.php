@@ -118,9 +118,33 @@ class ProjectController extends Controller
     /**
      * Delete project.
      */
-    public function destroy(Project $project)
-    {
+   public function destroy($id)
+{
+    try {
+        $project = Project::findOrFail($id);
+
+        // Delete associated project_users
+        $project->users()->detach();
+
+        // Delete thumbnail if exists
+        if ($project->thumbnail && \Storage::disk('public')->exists($project->thumbnail)) {
+            \Storage::disk('public')->delete($project->thumbnail);
+        }
+
+        // Permanently delete the project
         $project->delete();
-        return response()->json(['message' => 'Project deleted']);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Project deleted successfully.'
+        ]);
+    } catch (\Throwable $e) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Failed to delete project.',
+            'error' => $e->getMessage()
+        ], 500);
     }
+}
+
 }

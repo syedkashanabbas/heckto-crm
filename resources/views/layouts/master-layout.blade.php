@@ -90,7 +90,7 @@
     <script script src="{{ asset('assets/js/daily-summary.js') }}"></script>
     <script src="{{ asset('assets/js/adminAttendance.js') }}"></script>
     <script src="{{ asset('assets/js/projects/createProject.js') }}"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @stack('scripts') 
     <script>

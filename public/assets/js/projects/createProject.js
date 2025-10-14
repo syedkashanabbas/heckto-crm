@@ -79,4 +79,50 @@ $(document).ready(function () {
       }
     });
   });
+
+
+
+  
 });
+
+
+function deleteProject(id) {
+  Swal.fire({
+    title: "Are you sure?",
+    text: "This project will be permanently deleted!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#e3342f",
+    cancelButtonColor: "#6c757d",
+    confirmButtonText: "Yes, delete it",
+    cancelButtonText: "Cancel"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        url: `/projects/${id}`,
+        type: "DELETE",
+        headers: {
+          "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+        },
+        success: function (res) {
+          if (res.success) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "The project has been removed.",
+              icon: "success",
+              timer: 1500,
+              showConfirmButton: false
+            });
+            setTimeout(() => location.reload(), 1200);
+          } else {
+            Swal.fire("Error!", res.message || "Unable to delete project.", "error");
+          }
+        },
+        error: function (xhr) {
+          Swal.fire("Error!", "Something went wrong on the server.", "error");
+          console.error(xhr.responseText);
+        }
+      });
+    }
+  });
+}
