@@ -116,7 +116,7 @@
             <div class="badge h-5.5 rounded-full bg-black/20 px-2 text-xs-plus text-white">
               {{ $project->end_date ? \Carbon\Carbon::parse($project->end_date)->diffForHumans() : 'No deadline' }}
             </div>
-            @role('Admin')
+     
             <div class="ml-auto" style="margin-right: -0.25rem">
               <div 
                 x-data="usePopper({ placement: 'bottom-end', strategy: 'fixed', offset: 6 })" 
@@ -145,14 +145,18 @@
                           View
                         </button>
                       </li>
+                      @role('Admin')
                       <li>
                         <button class="flex w-full h-8 items-center px-3 pr-8 text-left font-medium tracking-wide text-slate-700 transition-all hover:bg-slate-100 dark:text-navy-100 dark:hover:bg-navy-600">
                           Edit
                         </button>
                       </li>
+                      @endrole
                     </ul>
+                    @role('Admin')
                     <div class="my-1 h-px bg-slate-150 dark:bg-navy-500"></div>
                     <ul>
+                      
                       <li>
                         <button 
                           class="flex w-full h-8 items-center px-3 pr-8 text-left font-medium tracking-wide text-error hover:bg-error/10 dark:hover:bg-error/20"
@@ -162,11 +166,12 @@
                         </button>
                       </li>
                     </ul>
+                  @endrole
                   </div>
                 </div>
               </div>
             </div>
-            @endrole
+        
           </div>
 
               </div>

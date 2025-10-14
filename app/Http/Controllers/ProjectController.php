@@ -119,32 +119,47 @@ class ProjectController extends Controller
      * Delete project.
      */
    public function destroy($id)
-{
-    try {
-        $project = Project::findOrFail($id);
+    {
+        try {
+            $project = Project::findOrFail($id);
 
-        // Delete associated project_users
-        $project->users()->detach();
+            // Delete associated project_users
+            $project->users()->detach();
 
-        // Delete thumbnail if exists
-        if ($project->thumbnail && \Storage::disk('public')->exists($project->thumbnail)) {
-            \Storage::disk('public')->delete($project->thumbnail);
+            // Delete thumbnail if exists
+            if ($project->thumbnail && \Storage::disk('public')->exists($project->thumbnail)) {
+                \Storage::disk('public')->delete($project->thumbnail);
+            }
+
+            // Permanently delete the project
+            $project->delete();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Project deleted successfully.'
+            ]);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to delete project.',
+                'error' => $e->getMessage()
+            ], 500);
         }
-
-        // Permanently delete the project
-        $project->delete();
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Project deleted successfully.'
-        ]);
-    } catch (\Throwable $e) {
-        return response()->json([
-            'success' => false,
-            'message' => 'Failed to delete project.',
-            'error' => $e->getMessage()
-        ], 500);
     }
+
+
+
+  public function board(Project $project)
+{
+    // Load ALL tasks for this project, grouped by status
+    $tasks = $project->tasks()
+        ->orderBy('order')
+        ->get()
+        ->groupBy('status');
+
+    return view('admin.projects.board', compact('project', 'tasks'));
 }
+
+
 
 }

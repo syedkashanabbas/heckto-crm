@@ -724,7 +724,6 @@
                           <img
                             class="rounded-full ring-2 ring-white dark:ring-navy-700"
                             src="images/avatar/avatar-20.jpg"
-                            
                             alt="avatar"
                           />
                         </div>
