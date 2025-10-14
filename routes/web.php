@@ -49,8 +49,15 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
     Route::get('/{project}', [ProjectController::class, 'show'])->name('projects.show'); // View one
     Route::put('/{project}', [ProjectController::class, 'update'])->name('projects.update'); // Update project
     Route::delete('/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy'); // Delete project
-    });
+      // Nested Task Routes
+    Route::post('/{project}/tasks', [TaskController::class, 'store'])->name('tasks.store'); // Create task in a project
+    Route::get('/{project}/tasks', [TaskController::class, 'index'])->name('tasks.index'); // List project tasks    
 
+});
+
+// Task Routes (non-nested actions like update/delete)
+Route::put('/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
+Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
     });
     //Admin Routes
     Route::middleware(['auth', 'role:Admin'])->group(function () {
