@@ -5,59 +5,58 @@
 
 
 
-<div class="flex items-center justify-between space-x-2 px-[var(--margin-x)] py-5 transition-all duration-[.25s]">
-        >
+<div  x-data="{showtaskModal:false}"   class="flex items-center justify-between space-x-2 px-[var(--margin-x)] py-5 transition-all duration-[.25s]">
+        
           <div class="flex items-center space-x-1">
-            <h3
-              class="text-lg font-medium text-slate-700 line-clamp-1 dark:text-navy-50"
-            >
-              Heckto Board
-            </h3>
+           <h3 class="text-lg font-medium text-slate-700 line-clamp-1 dark:text-navy-50">
+        {{ $project->name }} Board
+      </h3>
+
          
           </div>
           
      <div class="flex space-x-1">
- <div class="flex -space-x-2">
-  @foreach($activeUsers->take(3) as $user)
-    @if(!empty($user->profile_image))
-      <div 
-        class="avatar size-6 hover:z-10 sm:h-8 sm:w-8"
-        x-tooltip.duration.1000="'{{ $user->name }}'"
-      >
-        <img
-          class="rounded-full border-2 border-slate-50 dark:border-navy-900"
-          src="{{ asset('storage/'.$user->profile_image) }}"
-          alt="{{ $user->name }}"
-        />
-      </div>
-    @else
-      @php
-        $initials = collect(explode(' ', $user->name))
-                    ->map(fn($n) => strtoupper(substr($n, 0, 1)))
-                    ->join('');
-      @endphp
-      <div 
-        class="avatar size-6 hover:z-10 sm:h-8 sm:w-8"
-        x-tooltip.duration.1000="'{{ $user->name }}'"
-      >
-        <div class="is-initial rounded-full border-2 border-slate-50 bg-info text-xs uppercase text-white dark:border-navy-900 flex items-center justify-center">
-          {{ $initials }}
-        </div>
-      </div>
-    @endif
-  @endforeach
+      <div class="flex -space-x-2">
+        @foreach($activeUsers->take(3) as $user)
+          @if(!empty($user->profile_image))
+            <div 
+              class="avatar size-6 hover:z-10 sm:h-8 sm:w-8"
+              x-tooltip.duration.1000="'{{ $user->name }}'"
+            >
+              <img
+                class="rounded-full border-2 border-slate-50 dark:border-navy-900"
+                src="{{ asset('storage/'.$user->profile_image) }}"
+                alt="{{ $user->name }}"
+              />
+            </div>
+          @else
+            @php
+              $initials = collect(explode(' ', $user->name))
+                          ->map(fn($n) => strtoupper(substr($n, 0, 1)))
+                          ->join('');
+            @endphp
+            <div 
+              class="avatar size-6 hover:z-10 sm:h-8 sm:w-8"
+              x-tooltip.duration.1000="'{{ $user->name }}'"
+            >
+              <div class="is-initial rounded-full border-2 border-slate-50 bg-info text-xs uppercase text-white dark:border-navy-900 flex items-center justify-center">
+                {{ $initials }}
+              </div>
+            </div>
+          @endif
+        @endforeach
 
-  @if($activeUsers->count() > 3)
-    <div 
-      class="avatar size-6 sm:h-8 sm:w-8"
-      x-tooltip.duration.1000="'{{ $activeUsers->count() - 3 }} more users'"
-    >
-      <div class="is-initial rounded-full border-2 border-slate-50 bg-info text-xs uppercase text-white dark:border-navy-900 flex items-center justify-center">
-        +{{ $activeUsers->count() - 3 }}
+        @if($activeUsers->count() > 3)
+          <div 
+            class="avatar size-6 sm:h-8 sm:w-8"
+            x-tooltip.duration.1000="'{{ $activeUsers->count() - 3 }} more users'"
+          >
+            <div class="is-initial rounded-full border-2 border-slate-50 bg-info text-xs uppercase text-white dark:border-navy-900 flex items-center justify-center">
+              +{{ $activeUsers->count() - 3 }}
+            </div>
+          </div>
+        @endif
       </div>
-    </div>
-  @endif
-</div>
 
 
   <button
@@ -233,6 +232,7 @@
               </div>
               <div class="flex justify-center py-2">
                     <button
+                      @click="showModal = true"
                       class="flex items-center justify-center space-x-2 font-medium text-slate-600 hover:text-primary focus:text-primary dark:text-navy-100 dark:hover:text-accent-light dark:focus:text-accent-light"
                     >
                   <svg
@@ -407,6 +407,7 @@
               </div>
               <div class="flex justify-center py-2">
                 <button
+                @click="showModal = true"
                   class="flex items-center justify-center space-x-2 font-medium text-slate-600 hover:text-primary focus:text-primary dark:text-navy-100 dark:hover:text-accent-light dark:focus:text-accent-light"
                 >
                   <svg
@@ -581,6 +582,7 @@
               </div>
               <div class="flex justify-center py-2">
                 <button
+                @click="showModal = true"
                   class="flex items-center justify-center space-x-2 font-medium text-slate-600 hover:text-primary focus:text-primary dark:text-navy-100 dark:hover:text-accent-light dark:focus:text-accent-light"
                 >
                   <svg
@@ -760,6 +762,7 @@
               </div>
               <div class="flex justify-center py-2">
                 <button
+                @click="showModal = true"
                   class="flex items-center justify-center space-x-2 font-medium text-slate-600 hover:text-primary focus:text-primary dark:text-navy-100 dark:hover:text-accent-light dark:focus:text-accent-light"
                 >
                   <svg

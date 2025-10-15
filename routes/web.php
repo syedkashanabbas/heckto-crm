@@ -44,6 +44,15 @@ Route::middleware('auth')->group(function () {
     // Mini user list
     Route::get('/users/mini', [UserMiniController::class, 'index']);
 
+     // Task routes
+    Route::prefix('projects/{project}/tasks')->group(function () {
+        Route::post('/', [TaskController::class, 'store'])->name('tasks.store');
+    });
+
+    Route::put('/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
+    Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
+    Route::post('/tasks/reorder', [TaskController::class, 'reorder'])->name('tasks.reorder');
+
     // Project routes
     Route::prefix('projects')->group(function () {
         Route::get('/', [ProjectController::class, 'index'])->name('projects.index'); // List all projects
