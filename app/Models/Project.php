@@ -5,7 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use App\Models\User;   // ✅ explicitly import your User model
+use App\Models\Task;   // ✅ explicitly import your Task model
 
 class Project extends Model
 {
@@ -29,7 +30,7 @@ class Project extends Model
         'meta' => 'array',
     ];
 
-     protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at'];
 
     // Relations
     public function creator()
@@ -37,21 +38,20 @@ class Project extends Model
         return $this->belongsTo(User::class, 'created_by');
     }
 
-   public function users()
-{
-    return $this->belongsToMany(User::class, 'project_users')
-                ->withPivot(['role', 'is_active'])
-                ->withTimestamps();
-}
-
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'project_users')
+                    ->withPivot(['role', 'is_active'])
+                    ->withTimestamps();
+    }
 
     public function activeUsers()
     {
         return $this->users()->wherePivot('is_active', true);
     }
-    public function tasks()
-{
-    return $this->hasMany(Task::class);
-}
 
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 }
