@@ -12,6 +12,9 @@ use App\Http\Controllers\AdminAttendanceController;
 use App\Http\Controllers\AttendanceTrackingController;
 use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\UserMiniController;
+use App\Http\Controllers\TaskController;
+
+
 
 Route::get('/', function () {
     return redirect('/login');
@@ -45,13 +48,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/users/mini', [UserMiniController::class, 'index']);
 
      // Task routes
-    Route::prefix('projects/{project}/tasks')->group(function () {
-        Route::post('/', [TaskController::class, 'store'])->name('tasks.store');
+   Route::prefix('projects/{project}/tasks')->group(function () {
+    Route::get('/', [TaskController::class, 'index'])->name('tasks.index'); // ← Add this line
+    Route::post('/', [TaskController::class, 'store'])->name('tasks.store');
     });
+
 
     Route::put('/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
     Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
-    Route::post('/tasks/reorder', [TaskController::class, 'reorder'])->name('tasks.reorder');
+    Route::patch('/projects/{project}/tasks/reorder', [TaskController::class, 'reorder'])->name('tasks.reorder');
+    Route::patch('/projects/{project}/tasks/{task}/status', [TaskController::class, 'updateStatus'])->name('tasks.updateStatus');
 
     // Project routes
     Route::prefix('projects')->group(function () {

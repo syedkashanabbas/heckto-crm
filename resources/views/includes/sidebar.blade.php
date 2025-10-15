@@ -55,8 +55,8 @@
               </a>
 
               <!-- Apps -->
-              <a
-                {{-- href="{{ route('kabnan.index') }}" --}}
+              {{-- <a
+            
                 href="{{ route('dashboard') }}"
                 class="flex items-center justify-center transition-colors duration-200 rounded-lg size-11 outline-hidden hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
                 x-tooltip.placement.right="'Kanban'"
@@ -96,7 +96,7 @@
                     stroke-linecap="round"
                   />
                 </svg>
-              </a>
+              </a> --}}
             </div>
 
             <!-- Bottom Links -->

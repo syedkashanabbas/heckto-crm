@@ -8,6 +8,29 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
+
+    public function index(Project $project)
+    {
+        $tasks = $project->tasks()
+            ->with('assignedUser')
+            ->orderBy('order')
+            ->get()
+            ->groupBy('status');
+
+        // Normalize keys to match frontend expectations
+        $normalized = [
+            'pending' => $tasks->get('pending', collect())->values(),
+            'in_progress' => $tasks->get('in_progress', collect())->values(),
+            'in_review' => $tasks->get('in_review', collect())->values(),
+            'success' => $tasks->get('success', collect())->values(),
+        ];
+
+        return response()->json([
+            'success' => true,
+            'tasks' => $normalized,
+        ]);
+    }
+
     public function store(Request $request, Project $project)
     {
         $validated = $request->validate([
@@ -37,15 +60,21 @@ class TaskController extends Controller
     {
         $task->delete();
         return response()->json(['success' => true]);
-    }
-
-    public function reorder(Request $request)
-    {
-        foreach ($request->tasks as $data) {
-            Task::where('id', $data['id'])
-                ->update(['order' => $data['order'], 'status' => $data['status']]);
+        }
+        public function reorder(Request $request, Project $project)
+        {
+            $tasks = $request->input('tasks'); // array of {id, order}
+            foreach ($tasks as $item) {
+                $project->tasks()->where('id', $item['id'])->update(['order' => $item['order']]);
+            }
+            return response()->json(['success' => true]);
         }
 
-        return response()->json(['success' => true]);
-    }
+        public function updateStatus(Request $request, Project $project, Task $task)
+        {
+            $validated = $request->validate(['status' => 'required|string']);
+            $task->update(['status' => $validated['status']]);
+            return response()->json(['success' => true, 'task' => $task]);
+        }
+
 }
