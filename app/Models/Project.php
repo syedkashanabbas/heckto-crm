@@ -49,4 +49,9 @@ class Project extends Model
     {
         return $this->users()->wherePivot('is_active', true);
     }
+    public function tasks()
+{
+    return $this->hasMany(Task::class);
+}
+
 }

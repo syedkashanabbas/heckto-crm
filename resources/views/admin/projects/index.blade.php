@@ -141,9 +141,13 @@
                   <div class="popper-box rounded-md border border-slate-150 bg-white py-1.5 font-inter shadow-xl dark:border-navy-500 dark:bg-navy-700">
                     <ul>
                       <li>
-                        <button class="flex w-full h-8 items-center px-3 pr-8 text-left font-medium tracking-wide text-slate-700 transition-all hover:bg-slate-100 dark:text-navy-100 dark:hover:bg-navy-600">
-                          View
-                        </button>
+                      <button 
+                      onclick="window.location.href='{{ route('projects.board', $project->id) }}'"
+                      class="flex w-full h-8 items-center px-3 pr-8 text-left font-medium tracking-wide text-slate-700 transition-all hover:bg-slate-100 dark:text-navy-100 dark:hover:bg-navy-600"
+                    >
+                      View Board
+                    </button>
+
                       </li>
                       @role('Admin')
                       <li>

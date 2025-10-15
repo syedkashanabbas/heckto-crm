@@ -16,56 +16,67 @@
          
           </div>
           
-          <div class="flex space-x-1">
-            <div class="flex -space-x-2">
-              <div class="avatar size-6 hover:z-10 sm:h-8 sm:w-8">
-                <img
-                  class="rounded-full border-2 border-slate-50 dark:border-navy-900"
-                  src="images/avatar/avatar-20.jpg"
-                  alt="avatar"
-                />
-              </div>
-              <div class="avatar size-6 hover:z-10 sm:h-8 sm:w-8">
-                <img
-                  class="rounded-full border-2 border-slate-50 dark:border-navy-900"
-                  src="images/avatar/avatar-17.jpg"
-                  alt="avatar"
-                />
-              </div>
-             
-              <div
-                class="avatar hidden size-6 hover:z-10 sm:inline-flex sm:h-8 sm:w-8"
-              >
-                <img
-                  class="rounded-full border-2 border-slate-50 dark:border-navy-900"
-                  src="images/avatar/avatar-11.jpg"
-                  alt="avatar"
-                />
-              </div>
-              <div class="avatar size-6 sm:h-8 sm:w-8">
-                <div
-                  class="is-initial rounded-full border-2 border-slate-50 bg-info text-xs uppercase text-white dark:border-navy-900"
-                >
-                  +5
-                </div>
-              </div>
-            </div>
-            <button
-              class="btn size-6 rounded-full p-0 font-medium text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25 sm:h-8 sm:w-8"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="size-4 sm:h-5 sm:w-5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"
-                />
-              </svg>
-            </button>
-          
-          </div>
+     <div class="flex space-x-1">
+ <div class="flex -space-x-2">
+  @foreach($activeUsers->take(3) as $user)
+    @if(!empty($user->profile_image))
+      <div 
+        class="avatar size-6 hover:z-10 sm:h-8 sm:w-8"
+        x-tooltip.duration.1000="'{{ $user->name }}'"
+      >
+        <img
+          class="rounded-full border-2 border-slate-50 dark:border-navy-900"
+          src="{{ asset('storage/'.$user->profile_image) }}"
+          alt="{{ $user->name }}"
+        />
+      </div>
+    @else
+      @php
+        $initials = collect(explode(' ', $user->name))
+                    ->map(fn($n) => strtoupper(substr($n, 0, 1)))
+                    ->join('');
+      @endphp
+      <div 
+        class="avatar size-6 hover:z-10 sm:h-8 sm:w-8"
+        x-tooltip.duration.1000="'{{ $user->name }}'"
+      >
+        <div class="is-initial rounded-full border-2 border-slate-50 bg-info text-xs uppercase text-white dark:border-navy-900 flex items-center justify-center">
+          {{ $initials }}
+        </div>
+      </div>
+    @endif
+  @endforeach
+
+  @if($activeUsers->count() > 3)
+    <div 
+      class="avatar size-6 sm:h-8 sm:w-8"
+      x-tooltip.duration.1000="'{{ $activeUsers->count() - 3 }} more users'"
+    >
+      <div class="is-initial rounded-full border-2 border-slate-50 bg-info text-xs uppercase text-white dark:border-navy-900 flex items-center justify-center">
+        +{{ $activeUsers->count() - 3 }}
+      </div>
+    </div>
+  @endif
+</div>
+
+
+  <button
+    class="btn size-6 rounded-full p-0 font-medium text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25 sm:h-8 sm:w-8"
+    title="Add new member"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="size-4 sm:h-5 sm:w-5"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path
+        d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"
+      />
+    </svg>
+  </button>
+</div>
+
         </div>
 
         <div class="flex h-[calc(100vh-8.5rem)] grow flex-col">

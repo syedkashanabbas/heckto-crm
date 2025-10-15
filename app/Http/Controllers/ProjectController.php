@@ -149,16 +149,20 @@ class ProjectController extends Controller
 
 
 
-  public function board(Project $project)
+public function board(Project $project)
 {
-    // Load ALL tasks for this project, grouped by status
+    // Load all tasks for this project, grouped by status
     $tasks = $project->tasks()
         ->orderBy('order')
         ->get()
         ->groupBy('status');
 
-    return view('admin.projects.board', compact('project', 'tasks'));
+    // Load active users for this project
+    $activeUsers = $project->activeUsers()->get();
+
+    return view('admin.projects.board', compact('project', 'tasks', 'activeUsers'));
 }
+
 
 
 
