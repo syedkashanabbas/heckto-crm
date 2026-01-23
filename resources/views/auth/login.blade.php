@@ -10,7 +10,15 @@
 
     <!-- CSS Assets -->
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap" rel="stylesheet">
+     <style>
+      *{
+        font-family: "Parkinsans", sans-serif;
 
+      }
+     </style>
     <!-- Javascript Assets -->
     <script src="{{ asset('assets/js/app.js') }}" defer></script>
   </head>

@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\User;   // ✅ explicitly import your User model
-use App\Models\Task;   // ✅ explicitly import your Task model
+use App\Models\User;   
+use App\Models\Task;   
 
 class Project extends Model
 {

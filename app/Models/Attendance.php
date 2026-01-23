@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-// use OwenIt\Auditing\Contracts\Auditable;
+use OwenIt\Auditing\Contracts\Auditable;
 
-// implements Auditable
 
-class Attendance extends Model 
+
+class Attendance extends Model implements Auditable
 {
     use HasFactory ;
-    // , \OwenIt\Auditing\Auditable;
+    use \OwenIt\Auditing\Auditable;
 
     protected $casts = [
     'clock_in_time' => 'datetime',

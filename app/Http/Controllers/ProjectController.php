@@ -7,6 +7,8 @@ use App\Models\ProjectUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+
 
 class ProjectController extends Controller
 {
@@ -44,11 +46,18 @@ class ProjectController extends Controller
             'color'       => 'nullable|string|max:20',
             'status'      => 'nullable|string|in:draft,active,on_hold,completed,archived',
             'start_date'  => 'nullable|date',
-            'end_date'    => 'nullable|date|after_or_equal:start_date',
+            'end_date'    => 'nullable|date',
             'progress'    => 'nullable|numeric|min:0|max:100',
             'users'       => 'nullable|array',
             'thumbnail'   => 'nullable|image|max:2048',
         ]);
+
+        // Add conditional validation for end_date
+        if ($request->filled('end_date') && $request->filled('start_date')) {
+            $request->validate([
+                'end_date' => 'after_or_equal:start_date'
+            ]);
+        }
 
         DB::beginTransaction();
         try {
@@ -127,8 +136,8 @@ class ProjectController extends Controller
             $project->users()->detach();
 
             // Delete thumbnail if exists
-            if ($project->thumbnail && \Storage::disk('public')->exists($project->thumbnail)) {
-                \Storage::disk('public')->delete($project->thumbnail);
+            if ($project->thumbnail && Storage::disk('public')->exists($project->thumbnail)) {
+                Storage::disk('public')->delete($project->thumbnail);
             }
 
             // Permanently delete the project
