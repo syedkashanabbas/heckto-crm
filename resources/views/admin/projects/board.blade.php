@@ -60,11 +60,10 @@
         @endif
       </div>
 
-
+   @role('Admin')
   <button
     class="btn size-6 rounded-full p-0 font-medium text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25 sm:h-8 sm:w-8"
-    title="Add new member"
-  >
+    title="Add new member">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       class="size-4 sm:h-5 sm:w-5"
@@ -76,6 +75,7 @@
       />
     </svg>
   </button>
+  @endrole
 </div>
 </div>
 <div 

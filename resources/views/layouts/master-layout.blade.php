@@ -19,9 +19,9 @@
 
     <!-- Javascript Assets -->
     <script src="{{ asset('assets/js/app.js') }}" defer></script>
-
+  
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    {{-- <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap" rel="stylesheet">
      <style>
@@ -29,12 +29,23 @@
         font-family: "Parkinsans", sans-serif !important;
 
       }
-     </style>
+     </style> --}}
     
+     <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    {{-- <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    /> --}}
+    <link href="https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap" rel="stylesheet">
+    <style>
+     body{
+        font-family: "Parkinsans", sans-serif;notification 
+     }
+    </style>
     <script>
-      /**
-       * THIS SCRIPT REQUIRED FOR PREVENT FLICKERING IN SOME BROWSERS
-       */
+     
       localStorage.getItem("_x_darkMode_on") === "true" &&
         document.documentElement.classList.add("dark");
     </script>
@@ -90,7 +101,8 @@
     <script src="{{ asset('assets/js/daily-summary.js') }}"></script>
     <script src="{{ asset('assets/js/adminAttendance.js') }}"></script>
     <script src="{{ asset('assets/js/projects/createProject.js') }}"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('assets/js/admin-notifications.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @stack('scripts') 
     <script>

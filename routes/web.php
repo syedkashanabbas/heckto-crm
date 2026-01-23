@@ -13,6 +13,7 @@ use App\Http\Controllers\AttendanceTrackingController;
 use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\UserMiniController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\NotificationController;
 
 
 
@@ -72,11 +73,13 @@ Route::middleware('auth')->group(function () {
 
 // Admin-only routes
 Route::middleware(['auth', 'role:Admin'])->group(function () {
-
+    // Notification
+    Route::get('/admin/notifications/list', [NotificationController::class, 'list']);
     // Leaves
     Route::get('/admin/leaves', [LeaveController::class, 'all']);
-    Route::post('/admin/leaves/{id}/status', [LeaveController::class, 'updateStatus']);
 
+    Route::post('/admin/leaves/{id}/status', [LeaveController::class, 'updateStatus']);
+ 
     // Attendance management
     Route::get('/admin/attendance', [AdminAttendanceController::class, 'index'])->name('admin.attendance');
     Route::get('/admin/attendance/data', [AdminAttendanceController::class, 'getData']);

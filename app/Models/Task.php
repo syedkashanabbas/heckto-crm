@@ -26,34 +26,35 @@ class Task extends Model
     ];
 
     protected static function booted()
-    {
-        static::creating(function ($task) {
+{
+    static::creating(function ($task) {
 
-            if (Auth::check()) {
-                $task->created_by = Auth::id();
-            }
+        if (Auth::check()) {
+            $task->created_by = Auth::id();
+        }
 
-            // initialize status history
-            $task->updated_status = [
-                'pending'   => Auth::id(),
-                'in_review' => null,
-                'review'    => null,
-                'success'   => null,
-            ];
-        });
+        $task->updated_status = [
+            'pending'     => Auth::id(),
+            'in_progress' => null,
+            'review'      => null,
+            'success'     => null,
+        ];
+    });
 
-        static::updating(function ($task) {
+    static::updating(function ($task) {
 
-            if ($task->isDirty('status') && Auth::check()) {
+        if ($task->isDirty('status') && Auth::check()) {
 
-                $history = $task->updated_status ?? [];
+            $history = $task->updated_status ?? [];
 
-                $history[$task->status] = Auth::id();
+            $newStatus = $task->status;
 
-                $task->updated_status = $history;
-            }
-        });
-    }
+            $history[$newStatus] = Auth::id();
+
+            $task->updated_status = $history;
+        }
+    });
+}
 
     public function project()
     {
