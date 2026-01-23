@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 
 class ProjectController extends Controller
@@ -40,41 +41,36 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name'        => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'color'       => 'nullable|string|max:20',
-            'status'      => 'nullable|string|in:draft,active,on_hold,completed,archived',
-            'start_date'  => 'nullable|date',
-            'end_date'    => 'nullable|date',
-            'progress'    => 'nullable|numeric|min:0|max:100',
-            'users'       => 'nullable|array',
-            'thumbnail'   => 'nullable|image|max:2048',
-        ]);
-
-        // Add conditional validation for end_date
-        if ($request->filled('end_date') && $request->filled('start_date')) {
-            $request->validate([
-                'end_date' => 'after_or_equal:start_date'
-            ]);
-        }
-
-        DB::beginTransaction();
+        
         try {
-            // Handle thumbnail upload
+            $validated = $request->validate([
+                'name'        => 'required|string|max:255',
+                'description' => 'nullable|string',
+                'color'       => 'nullable|string|max:20',
+                'status'      => 'nullable|string|in:draft,active,on_hold,completed,archived',
+                'start_date'  => 'nullable|date',
+                'end_date'    => 'nullable|date|after_or_equal:start_date',
+                'progress'    => 'nullable|numeric|min:0|max:100',
+                'users'       => 'nullable|array',
+                'thumbnail'   => 'nullable|image|max:2048',
+            ]);
+
+            DB::beginTransaction();
+
             $thumbnailPath = null;
             if ($request->hasFile('thumbnail')) {
                 $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
             }
+        $user = auth()->user();
 
-            // Create project
+
             $project = Project::create([
                 'name'        => $validated['name'],
                 'slug'        => Str::slug($validated['name']),
                 'description' => $validated['description'] ?? null,
                 'color'       => $validated['color'] ?? '#000000',
                 'thumbnail'   => $thumbnailPath,
-                'created_by'  => auth()->id() ?? 1,
+                'created_by' => $user ? $user->id : null,
                 'status'      => $validated['status'] ?? 'draft',
                 'start_date'  => $validated['start_date'] ?? null,
                 'end_date'    => $validated['end_date'] ?? null,
@@ -82,7 +78,6 @@ class ProjectController extends Controller
                 'meta'        => [],
             ]);
 
-            // Attach users if provided
             if (!empty($validated['users'])) {
                 foreach ($validated['users'] as $userId) {
                     ProjectUser::create([
@@ -98,11 +93,33 @@ class ProjectController extends Controller
 
             DB::commit();
 
-            return redirect()->back()->with('success', 'Project created successfully!');
+            return response()->json([
+                'success' => true,
+                'message' => 'Project created successfully!',
+                'data'    => $project,
+            ]);
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation failed',
+                'errors'  => $e->errors(),
+            ], 422);
+
         } catch (\Throwable $e) {
             DB::rollBack();
-            return redirect()->back()->with('error', 'Something went wrong while creating the project.');
-
+            Log::error('Project creation failed', [
+                    'message' => $e->getMessage(),
+                    'file'    => $e->getFile(),
+                    'line'    => $e->getLine(),
+                    'trace'   => $e->getTraceAsString(),
+                    'user_id' => auth()->id(),
+                    'payload' => $request->except(['thumbnail']),
+                ]);
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong while creating the project.',
+            ], 500);
         }
     }
 

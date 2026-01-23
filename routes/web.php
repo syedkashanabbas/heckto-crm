@@ -62,7 +62,7 @@ Route::middleware('auth')->group(function () {
     // Project routes
     Route::prefix('projects')->group(function () {
         Route::get('/', [ProjectController::class, 'index'])->name('projects.index'); // List all projects
-        Route::post('/', [ProjectController::class, 'store'])->name('projects.store'); // Create project
+        Route::post('/store', [ProjectController::class, 'store'])->name('projects.store'); // Create project
         Route::get('/{project}', [ProjectController::class, 'show'])->name('projects.show'); // View single project
         Route::put('/{project}', [ProjectController::class, 'update'])->name('projects.update'); // Update project
         Route::delete('/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy'); // Delete project

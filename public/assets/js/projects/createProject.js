@@ -27,7 +27,7 @@ $(document).ready(function () {
     }
 
     $.ajax({
-      url: "/projects",
+      url: "/projects/store",
       type: "POST",
       data: formData,
       processData: false,
