@@ -52,7 +52,7 @@
   </head>
 
   <body
-    x-data
+    x-data="{ showAssignModal: false }"
     x-bind="$store.global.documentBody"
     class="is-header-blur is-sidebar-open"
   >

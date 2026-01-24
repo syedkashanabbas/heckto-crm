@@ -62,6 +62,7 @@
 
    @role('Admin')
   <button
+    @click="showAssignModal = true"
     class="btn size-6 rounded-full p-0 font-medium text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25 sm:h-8 sm:w-8"
     title="Add new member">
     <svg
@@ -253,5 +254,6 @@ function taskBoard(projectId) {
 
 
 
+@include('admin.projects.components.assign-modal')
 
 @endsection

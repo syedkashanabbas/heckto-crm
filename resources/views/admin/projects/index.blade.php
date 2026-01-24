@@ -304,8 +304,7 @@
         @endforelse
     </div>
 
-    <!-- Load JavaScript files -->
-    <script src="{{ asset('assets/js/projects/createProject.js') }}"></script>
+
 @endsection
 
 @push('scripts')

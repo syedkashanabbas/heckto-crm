@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
+use App\Models\User;
 
 
 class ProjectController extends Controller
@@ -183,10 +184,40 @@ public function board(Project $project)
         ->get()
         ->groupBy('status');
 
-    // Load active users for this project
+    // Load active users already assigned to this project
     $activeUsers = $project->activeUsers()->get();
 
-    return view('admin.projects.board', compact('project', 'tasks', 'activeUsers'));
+    // Load all users that can be assigned (for modal select)
+    $allUsers = User::select('id', 'name')->get();
+
+    return view(
+        'admin.projects.board',
+        compact('project', 'tasks', 'activeUsers', 'allUsers')
+    );
+}
+
+public function assignUsers(Request $request, Project $project)
+{
+    $validated = $request->validate([
+        'users' => 'required|array',
+        'users.*' => 'exists:users,id',
+    ]);
+
+    foreach ($validated['users'] as $userId) {
+        ProjectUser::updateOrCreate(
+            [
+                'project_id' => $project->id,
+                'user_id' => $userId,
+            ],
+            [
+                'role' => 'member',
+                'is_active' => true,
+                'assigned_at' => now(),
+            ]
+        );
+    }
+
+    return redirect()->back()->with('success', 'Users assigned successfully');
 }
 
 

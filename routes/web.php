@@ -47,6 +47,9 @@ Route::middleware('auth')->group(function () {
 
     // Mini user list
     Route::get('/users/mini', [UserMiniController::class, 'index']);
+    Route::post('/users/{user}/toggle-status', [UserMiniController::class, 'toggleStatus'])
+    ->name('users.toggleStatus');
+
 
      // Task routes
    Route::prefix('projects/{project}/tasks')->group(function () {
@@ -68,6 +71,9 @@ Route::middleware('auth')->group(function () {
         Route::put('/{project}', [ProjectController::class, 'update'])->name('projects.update'); // Update project
         Route::delete('/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy'); // Delete project
         Route::get('/{project}/board', [ProjectController::class, 'board'])->name('projects.board'); // Kanban board
+        Route::post('/{project}/assign-users', [ProjectController::class, 'assignUsers'])
+        ->name('projects.assign.users');
+
     });
 });
 
