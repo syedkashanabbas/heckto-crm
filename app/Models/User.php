@@ -27,6 +27,10 @@ class User extends Authenticatable
         'dob',
         'phone',
         'status',
+        'address',
+        'employee_id',
+        'department',
+        'designation',
     ];
 
     /**
